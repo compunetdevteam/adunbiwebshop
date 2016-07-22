@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
 {
-    //
-    public function products()
-    {
-    	return $this->hasMany(Product::class);
-    }
+    /*	
+		A supplier can suppy multiple products
+	*/
+	public function products()
+	{
+		return $this->hasMany(Product::class);
+	}
 }

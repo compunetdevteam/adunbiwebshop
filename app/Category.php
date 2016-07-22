@@ -21,9 +21,8 @@ class Category extends Model
     /**
      * Relationship with the Stocks table
      */
-    public function stock()
+    public function stocks()
     {
-        //return $this->belongsTo('App\Stock');
         return $this->belongsTo(Stock::class);
     }
 
