@@ -27,6 +27,8 @@ Route::get('findCat', 'CategoriesController@findCategoryByName');
 Route::get('createCatByName','CategoriesController@createProductCategory');
 Route::get('productbycategory','CategoriesController@searchProductByCategory');
 Route::post('productbycategoryResult','CategoriesController@viewProductByCategory');
+Route::get('product','ProductsController@product');
+Route::get('createcategory','CategoriesController@createcategory');
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
