@@ -7,30 +7,38 @@ use App\Http\Requests;
 
 class ProductsController extends Controller
 {
-<<<<<<< HEAD
-	protected $productDB;
+	protected $listproductDB;
+	
 	
 	public function __construct(App\ProductDataAccess $product)
 	{
-		$this->$productDB = $product; 
+		$this->listproductDB = $product;
 	}
-	
-	//method to return all product
-	public function Products()
+	// method to list all products
+	public function product()
 	{
 		$listproduct = App\Product::all();
-		//$listproduct = $this->productDB->ListProducts();
-		return view('findproduct',compact('listproduct'));
-	}
-	
-	public function productByName(App\ProductDataAccess $product_by_name)
-	{
+		return view('findcat',compact('listproduct'));
 		
 	}
 	
+	// search products by products name
+	public function searchproduct()
+	{
 	
+		return view('searchproduct');
+	}
 	
-=======
-	//
->>>>>>> origin/dev
+	public function searchresult($name)
+	{
+		
+		//$search = App\Product::find($name);
+		
+		return view('searchresult');
+		
+	}
+	public function createProduct(Request $request)
+	{
+		
+	}
 }

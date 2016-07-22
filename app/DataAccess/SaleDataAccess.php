@@ -71,5 +71,33 @@ class SaleDataAccess
         
     }
 
-    
+        public function showsalesummaryperweek()
+    {
+        $showsalessummaryperweek = DB::table('sales')
+            ->join ('product','sales.id','=','product.id')
+            ->sum('sales.total')
+            ->whereWeek('sales.saledate','=',date('w'));
+            ->get();
+            return showsalessummaryperweek;
+    }
+
+
+
+    public  function  salesummarypermonth()
+    {
+        $showsalessummarypermonth = DB::table('Sales')
+        ->join('product','sales.id','=','product.id')
+        ->sum('total')
+        ->whareMonth('sales.saledate ','=',date('m'))
+        ->get();
+    }
+
+    public  function  showsalesummaryperyear()
+    {
+        $showsalessummaryperyear = DB::table('Sales')
+              ->join('product','sales.id','=','product.id')
+              ->sum('total')
+              ->whereYear('sales.saledate ','=',date('y'))
+              ->get();
+    }
 }
