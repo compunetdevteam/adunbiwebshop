@@ -14,11 +14,11 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ProductDataAccess
 {
-    var $product;
+    //var $product;
 
-    public function __construct(Product $_product)
+    public function __construct()
     {
-        $this->product = $_product;
+        //$this->product = $_product;
     }
 
 
@@ -82,6 +82,17 @@ class ProductDataAccess
     public function DeleteProduct($id)
     {
         return $this->product->all()->find($id)->delete();
+    }
+
+
+
+
+    /*
+     * List Product Arrival Dates
+     */
+    public function ProductArrivalDate()
+    {
+        
     }
 
 }

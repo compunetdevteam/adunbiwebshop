@@ -49,7 +49,7 @@ class Product extends Model
      * Many products can be in one sale
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function sale()
+    public function sales()
     {
         return $this->belongsTo(Sale::class);
     }
@@ -58,7 +58,7 @@ class Product extends Model
      * Many products can be supplied by a supplier
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function supplier()
+    public function suppliers()
     {
         return $this->belongsTo(Supplier::class);
     }

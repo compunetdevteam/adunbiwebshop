@@ -50,7 +50,26 @@ class SaleDataAccess
     public function ShowAllSalesBySalesStaff(User $user)
     {
         return Sale::with('users')->all()->where('user_id', $user->id)->get();
-
     }
+	
+	
+	
+    /*
+     * List the best performing product
+     */
+    public function BestPerformimgProduct()
+    {
+		
+    }
+
+
+    /*
+     * List the worst performing product
+     */
+    public function WorstPerformingProduct()
+    {
+        
+    }
+
     
 }

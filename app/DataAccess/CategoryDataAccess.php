@@ -7,7 +7,7 @@
  */
 
 namespace App;
-
+	
 
 use App\Category;
 
@@ -17,11 +17,9 @@ class CategoryDataAccess
 
     /**
      * CategoryDataAccess constructor.
-     * @param \App\Category $_category
      */
-    public function __construct(Category $_category)
+    public function __construct()
     {
-        $this->category = $_category;
     }
 
     /**
@@ -31,9 +29,8 @@ class CategoryDataAccess
 
     public function GetAllCategories()
     {
-        Category::chunk(25, function($categories){
-            return $categories;
-        });
+		$result = Category::all();
+		return $result;
     }
 
     /**
@@ -43,7 +40,10 @@ class CategoryDataAccess
      */
     public function FindCategoryByName($name)
     {
-        return Category::where('name',$name)->first();
+      // $categoryName = Category::where('name',$name)->first();   
+		//return view('productbycategoryResult',compact('categoryName'));
+		echo 'You can find a category by name';
+		
     }
 
     /**

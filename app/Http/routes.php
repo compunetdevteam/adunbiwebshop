@@ -10,10 +10,25 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-/*Route::get('/', function () {
+/*
+Route::get('/', function () {
     return view('welcome');
-});*/
+});
+*/
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//test for controllers my Mr Andrew & David
+Route::get('index', 'CategoriesController@index');
+//Route::get('/index', function(){echo 'this is laravel';});
+//list all products
+Route::get('findproduct', 'ProductsController@Products');
+//find products by category
+Route::get('findCat', 'CategoriesController@findCategoryByName');
+Route::get('createCatByName','CategoriesController@createProductCategory');
+Route::get('productbycategory','CategoriesController@searchProductByCategory');
+Route::post('productbycategoryResult','CategoriesController@viewProductByCategory');
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // Authorization
 Route::get('/login', ['as' => 'auth.login.form', 'uses' => 'Auth\SessionController@getLogin']);

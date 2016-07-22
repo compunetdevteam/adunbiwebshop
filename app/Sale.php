@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
-    public function products()
-    {
-        return $this->hasMany(Product::class);
+    //a 1 to Many relationship from Sale to Product Model;
+    public function products(){
+        return $this->belongsTo(Product::class);
     }
+    
+   
 }

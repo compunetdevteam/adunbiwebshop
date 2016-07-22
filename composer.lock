@@ -2325,34 +2325,34 @@
         },
         {
             "name": "vinkla/hashids",
-            "version": "2.3.0",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vinkla/hashids.git",
-                "reference": "4ff0bb50f0e2a20854246731adf628b294531ea4"
+                "reference": "77238d50efa2473cdf627d2e0b6a1834037c5b66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vinkla/hashids/zipball/4ff0bb50f0e2a20854246731adf628b294531ea4",
-                "reference": "4ff0bb50f0e2a20854246731adf628b294531ea4",
+                "url": "https://api.github.com/repos/vinkla/hashids/zipball/77238d50efa2473cdf627d2e0b6a1834037c5b66",
+                "reference": "77238d50efa2473cdf627d2e0b6a1834037c5b66",
                 "shasum": ""
             },
             "require": {
-                "graham-campbell/manager": "^2.3",
+                "graham-campbell/manager": "^2.4",
                 "hashids/hashids": "^1.0",
                 "illuminate/contracts": "5.1.* || 5.2.* || 5.3.*",
                 "illuminate/support": "5.1.* || 5.2.* || 5.3.*",
-                "php": "^5.5.9 || ^7.0"
+                "php": "^5.6.4 || ^7.0"
             },
             "require-dev": {
-                "graham-campbell/testbench": "^3.1",
-                "mockery/mockery": "^0.9.4",
-                "phpunit/phpunit": "^4.8 || ^5.0"
+                "graham-campbell/testbench": "^3.2",
+                "mockery/mockery": "^0.9.5",
+                "phpunit/phpunit": "^5.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -2383,7 +2383,7 @@
                 "obfuscate",
                 "youtube"
             ],
-            "time": "2016-05-05 11:03:48"
+            "time": "2016-07-11 19:13:05"
         },
         {
             "name": "vlucas/phpdotenv",
