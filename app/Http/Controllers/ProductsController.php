@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
 class ProductsController extends Controller
 {
-	protected $listproductDB;
-	
+	protected $listproductDB;	
 	
 	public function __construct(App\ProductDataAccess $product)
 	{
@@ -21,6 +20,12 @@ class ProductsController extends Controller
 		return view('findcat',compact('listproduct'));
 		
 	}
+
+	// table creation method
+	public function createProduct()
+	{
+		
+	}
 	
 	// search products by products name
 	public function searchproduct()
@@ -28,7 +33,7 @@ class ProductsController extends Controller
 	
 		return view('searchproduct');
 	}
-	
+	// method to search product by name
 	public function searchresult($name)
 	{
 		
