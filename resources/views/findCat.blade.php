@@ -8,12 +8,12 @@
 
 <h1>List of all Categories</h1>
 	
+	<ol>
 	
-	<!--
 @foreach($listproduct as $allproduct)
-		{{ $allproduct['name']}}
-	@endforeachl;
-	-->
-
+	<li>	{{ $allproduct['description']}}</li>
+	@endforeach;
+	
+</ol>
 </body>
 </html>
