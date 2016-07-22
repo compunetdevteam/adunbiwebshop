@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 class ProductsController extends Controller
 {
+<<<<<<< HEAD
 	protected $productDB;
 	
 	public function __construct(App\ProductDataAccess $product)
@@ -29,4 +30,7 @@ class ProductsController extends Controller
 	
 	
 	
+=======
+	//
+>>>>>>> origin/dev
 }
