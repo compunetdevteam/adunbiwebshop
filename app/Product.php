@@ -49,7 +49,7 @@ class Product extends Model
      * Many products can be in one sale
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function sales()
+    public function sale()
     {
         return $this->belongsTo(Sale::class);
     }
