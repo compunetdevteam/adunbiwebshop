@@ -2,9 +2,10 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cartalyst\Sentinel\Users\EloquentUser;
+//use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends EloquentUser
 {
     /**
      * The attributes that are mass assignable.
@@ -23,4 +24,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
 }

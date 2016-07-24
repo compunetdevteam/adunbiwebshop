@@ -9,7 +9,7 @@
 namespace App;
 
 
-class SaleDataAccess
+/**class SaleDataAccess
 {
     var $sale;
 
@@ -23,18 +23,18 @@ class SaleDataAccess
      * Supply a sale date to display sales by.
      * @param datetime $date
      * @return mixed Collection of Sales
-     */
+
 
     public function ShowAllSalesByDate(datetime $date)
     {
         return Sale::where('saledate', $date)->orderBy('created_at', 'desc');
 
-    }
+    }*/
 
     /**
      * Show a collection of sales ordered by total on every sale
      * @return mixed Collection of Sales
-     */
+
 
     public function ShowAllSalesByTotals()
     {
@@ -45,27 +45,27 @@ class SaleDataAccess
      * Show all the sales made by a particular user
      * @param User $user
      * @return mixed Several Sales made by a single user
-     */
+
 
     public function ShowAllSalesBySalesStaff(User $user)
     {
         return Sale::with('users')->all()->where('user_id', $user->id)->get();
-    }
+    }*/
 	
 	
 	
     /*
      * List the best performing product
-     */
+
     public function BestPerformimgProduct()
     {
 		
-    }
+    }*/
 
 
     /*
      * List the worst performing product
-     */
+
     public function WorstPerformingProduct()
     {
         
@@ -74,11 +74,11 @@ class SaleDataAccess
         public function showsalesummaryperweek()
     {
         $showsalessummaryperweek = DB::table('sales')
-            ->join ('product','sales.id','=','product.id')
-            ->sum('sales.total')
-            ->whereWeek('sales.saledate','=',date('w'));
-            ->get();
-            return showsalessummaryperweek;
+                ->join ('product','sales.id','=','product.id')
+                ->sum('sales.total')
+                ->whereWeek('sales.saledate','=',date('w'));
+                ->get();
+        return $showsalessummaryperweek;
     }
 
 
@@ -86,10 +86,11 @@ class SaleDataAccess
     public  function  salesummarypermonth()
     {
         $showsalessummarypermonth = DB::table('Sales')
-        ->join('product','sales.id','=','product.id')
-        ->sum('total')
-        ->whareMonth('sales.saledate ','=',date('m'))
-        ->get();
+                ->join('product','sales.id','=','product.id')
+                ->sum('total')
+                ->whereMonth('sales.saledate ','=',date('m'))
+                ->get();
+        return $showsalessummarypermonth;
     }
 
     public  function  showsalesummaryperyear()
@@ -99,5 +100,6 @@ class SaleDataAccess
               ->sum('total')
               ->whereYear('sales.saledate ','=',date('y'))
               ->get();
+        return $showsalessummaryperyear;
     }
-}
+}*/

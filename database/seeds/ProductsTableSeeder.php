@@ -10,9 +10,7 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
         //TestDummy::times(20)->create('App\Product');
-        factory(App\Product::class, 50)->create()->each(function($p){
-        	$p->images()->save(factory(App\Image::class)->make());
-        });
+        factory(App\Product::class, 30)->create();
         
     }
 }

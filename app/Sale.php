@@ -10,6 +10,15 @@ class Sale extends Model
     public function products(){
         return $this->hasMany(Product::class);
     }
+
+    /**
+     * One to many between Sales and Users
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     
    
 }

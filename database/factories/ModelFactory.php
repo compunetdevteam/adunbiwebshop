@@ -31,12 +31,12 @@ $factory->define(App\Product::class, function(Faker\Generator $faker){
         'sale_id' => function(){
             return factory(App\Sale::class)->create()->id;
         },
-        'productname' => $faker->text,
-        'dateofpurchase'=> $faker->date('d-m-Y'),
+        'productname' => $faker->word,
+        'dateofpurchase'=> $faker->dateTimeThisDecade,
         'batchnumber' => $faker->macAddress,
         'serialnumber' => $faker->macAddress,
-        'costprice' => $faker->randomFloat(),
-        'sellingprice' => $faker->randomFloat(),
+        'costprice' => $faker->randomFloat(5,5,9),
+        'sellingprice' => $faker->randomFloat(5,5,9),
         'description' => $faker->sentence,
         'weight' => $faker->randomFloat()
     ];
