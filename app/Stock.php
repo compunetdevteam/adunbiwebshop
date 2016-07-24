@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Stock extends Model
 {
     //a stock can have many category
-	public function category()
+	public function categories()
 	{
-		return $this->hasMany(Catetory::class);
+		return $this->hasMany(Category::class);
 	}
 	
 	public function products()

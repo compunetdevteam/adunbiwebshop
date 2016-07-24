@@ -29,6 +29,10 @@ Route::get('productbycategory','CategoriesController@searchProductByCategory');
 Route::post('productbycategoryResult','CategoriesController@viewProductByCategory');
 Route::get('product','ProductsController@product');
 Route::get('createcategory','CategoriesController@createcategory');
+
+///////////////Stock Routes/////////////////
+Route::get('stocks', 'StocksController@index');
+Route::get('stocks/{stock}', 'StocksController@details');
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 

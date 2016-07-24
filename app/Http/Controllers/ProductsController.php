@@ -16,7 +16,7 @@ class ProductsController extends Controller
 	// method to list all products
 	public function product()
 	{
-		$listproduct = App\Product::all();
+		$products = App\Product::with('images')->paginate(20);
 		return view('findcat',compact('listproduct'));
 		
 	}
