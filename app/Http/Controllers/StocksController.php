@@ -25,10 +25,4 @@ class StocksController extends Controller
     {
         return App\Stock::with('categories.products')->paginate(10);
     }
-
-    public function GetStockItem()
-    {
-        
-    }
-
 }
