@@ -17,18 +17,24 @@ Route::get('/', function () {
 */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//test for controllers my Mr Andrew & David
-Route::get('index', 'CategoriesController@index');
-//Route::get('/index', function(){echo 'this is laravel';});
-//list all products
-Route::get('findproduct', 'ProductsController@Products');
+
+////Routes for the Products Controller and Products Section of the application////////////////////
+Route::get('products','ProductsController@index');
+
 //find products by category
 Route::get('findCat', 'CategoriesController@findCategoryByName');
 Route::get('createCatByName','CategoriesController@createProductCategory');
 Route::get('productbycategory','CategoriesController@searchProductByCategory');
 Route::post('productbycategoryResult','CategoriesController@viewProductByCategory');
-Route::get('product','ProductsController@product');
 Route::get('createcategory','CategoriesController@createcategory');
+
+///Routes for SalesController and Sales Section of the Application////////////////////////////
+Route::get('sales', 'SalesController@index');
+
+///////////////Stock Routes/////////////////
+Route::get('stocks', 'StocksController@index');
+Route::get('stocks/{stock}', 'StocksController@details');
+Route::get('getstocks', 'StocksController@displaystock');
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 

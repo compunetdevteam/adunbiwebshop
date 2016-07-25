@@ -12,9 +12,7 @@ class StocksTableSeeder extends Seeder
     public function run()
     {
         //
-        factory(App\Stock::class, 50)->create()->each(function($s){
-        	$s->products()->save(factory(App\Product::class)->make());
-        });
+        factory(App\Stock::class, 20)->create();
         
     }
 }

@@ -14,36 +14,9 @@ class ProductsController extends Controller
 		$this->listproductDB = $product;
 	}
 	// method to list all products
-	public function product()
+	public function index()
 	{
-		$listproduct = App\Product::all();
-		return view('findcat',compact('listproduct'));
-		
-	}
-
-	// table creation method
-	public function createProduct()
-	{
-		
-	}
-	
-	// search products by products name
-	public function searchproduct()
-	{
-	
-		return view('searchproduct');
-	}
-	// method to search product by name
-	public function searchresult($name)
-	{
-		
-		//$search = App\Product::find($name);
-		
-		return view('searchresult');
-		
-	}
-	public function createProduct(Request $request)
-	{
-		
+		$products = App\Product::with('images')->paginate(20);
+		return view('products.index',compact('products'));
 	}
 }
