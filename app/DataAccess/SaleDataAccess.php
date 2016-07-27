@@ -6,11 +6,17 @@
  * Time: 4:30 PM
  */
 
+<<<<<<< HEAD
+namespace App\DataAccess\SaleDataAccess;
+use App\Sale;
+use Carbon\Carbon;
+=======
 namespace App;
-
+use Carbon/Carbon;
+>>>>>>> origin/dev
 
 class SaleDataAccess
-{
+{\
     var $sale;
 
     public function __construct(Sale $_sale)
@@ -73,15 +79,35 @@ class SaleDataAccess
 
         public function showsalesummaryperweek()
     {
-        $showsalessummaryperweek = DB::table('sales')
+<<<<<<< HEAD
+       /* $showsalessummaryperweek = DB::table('sales')
+=======
+     /*   $showsalessummaryperweek = DB::table('sales')
+>>>>>>> origin/dev
                 ->join ('product','sales.id','=','product.id')
                 ->sum('sales.total')
                 ->whereWeek('sales.saledate','=',date('w'));
                 ->get();
+<<<<<<< HEAD
         return $showsalessummaryperweek;
+        */       
+       
+    $showsalessummaryperweek = with::('Sale')
+    ->join('Product') on (product.id)
+    ->where('sales.id','=','product.id')
+    ->whereWeek('sales.saledate','=',date())
+    ->get();
+   return showsalessummaryperweek;
+=======
+        return $showsalessummaryperweek;*/
+
+
+        $showsalesummaryperweek = Sale::Carbon/Carbon()::week();
+        Sale::where('saledate', '')
+>>>>>>> origin/dev
     }
 
-
+/*
 
     public  function  salesummarypermonth()
     {
@@ -95,11 +121,13 @@ class SaleDataAccess
 
     public  function  showsalesummaryperyear()
     {
-        $showsalessummaryperyear = DB::table('Sales')
+       /* $showsalessummaryperyear = DB::table('Sales')
               ->join('product','sales.id','=','product.id')
               ->sum('total')
               ->whereYear('sales.saledate ','=',date('y'))
               ->get();
         return $showsalessummaryperyear;
+        */
+       
     }
 }
