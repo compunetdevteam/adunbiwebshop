@@ -6,9 +6,14 @@
  * Time: 4:30 PM
  */
 
+<<<<<<< HEAD
 namespace App\DataAccess\SaleDataAccess;
 use App\Sale;
 use Carbon\Carbon;
+=======
+namespace App;
+use Carbon/Carbon;
+>>>>>>> origin/dev
 
 class SaleDataAccess
 {\
@@ -74,11 +79,16 @@ class SaleDataAccess
 
         public function showsalesummaryperweek()
     {
+<<<<<<< HEAD
        /* $showsalessummaryperweek = DB::table('sales')
+=======
+     /*   $showsalessummaryperweek = DB::table('sales')
+>>>>>>> origin/dev
                 ->join ('product','sales.id','=','product.id')
                 ->sum('sales.total')
                 ->whereWeek('sales.saledate','=',date('w'));
                 ->get();
+<<<<<<< HEAD
         return $showsalessummaryperweek;
         */       
        
@@ -88,6 +98,13 @@ class SaleDataAccess
     ->whereWeek('sales.saledate','=',date())
     ->get();
    return showsalessummaryperweek;
+=======
+        return $showsalessummaryperweek;*/
+
+
+        $showsalesummaryperweek = Sale::Carbon/Carbon()::week();
+        Sale::where('saledate', '')
+>>>>>>> origin/dev
     }
 
 /*
