@@ -4,18 +4,25 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Products</title>
-	<link rel="stylesheet" href="">
+	
 </head>
+<center>
 <body>
-	<div id="container">
-		<div class="row">
-			<ul>
+<h1> this is the product list</h1>
+	
+			<table border="1" width="20%">
 			@foreach($products as $product)
-				<li>{{  $product->productname }} || <b>{{  $product->sellingprice }}</b></li>
+			
+				<tr>
+				<td>{{$product->productname}}</td> 
+				<td>{{$product->sellingprice}}</td>
+				</tr>
+				
 			@endforeach
-			</ul>
+			</table>
+</center>
 			{{$products->links()}}
-		</div>
-	</div>
+		
 </body>
+
 </html>

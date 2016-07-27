@@ -1,22 +1,72 @@
 <?php
 
 namespace App\Http\Controllers;
-use App;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
 class ProductsController extends Controller
 {
-	protected $listproductDB;	
-	
-	public function __construct(App\ProductDataAccess $product)
+
+	protected $productDB;
+
+	public function __construct(Product $product)
 	{
-		$this->listproductDB = $product;
+
+		$this->productDB = $product;
 	}
-	// method to list all products
+
+
 	public function index()
+		{
+
+			$products = $this->listProducts();
+			return view('products.index',compact('products'));
+			
+		}
+	/**
+	 * Return collection of products
+	 * @return collection of products
+	 */
+	public function listProducts()
 	{
-		$products = App\Product::with('images')->paginate(20);
-		return view('products.index',compact('products'));
+		$products = Product::paginate(15);
+		return $products;
 	}
+	/**
+	 * [doSearch description]
+	 * @param  Request $request [description]
+	 * @return [type]           [description]
+	 */
+	public function doSearch(Request $request)
+	{
+		$this->validate($request, ['name'=> 'required|min:3|alpha_dash']);
+		$results = $this->productsearch($request);
+		return view('products.productresult', compact('results'));
+		//dd('products');
+	}
+	/**
+	 * [search description]
+	 * @param  display the result of the search
+	 * @return product search result
+	 */
+	public function search($results = [])
+	{
+		return view('products.searchproducts',compact('results'));
+	}
+
+
+	/**
+     * Load and find the products supplied by a supplier's name
+     * @param string $name
+     * @return Collection Products
+     */
+    public function productsearch(Request $request)
+    {
+    	$results = Product::where('productname','like', $request->input('name').'%')->get();
+    	return $results;
+       // return $this->product->with('supplier')->all()->find($name);
+    } //$reques
+		
+	
 }
