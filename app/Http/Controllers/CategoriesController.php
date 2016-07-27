@@ -1,32 +1,94 @@
 <?php
 
 namespace App\Http\Controllers;
-use App;
+use App\Category;
 
 use Illuminate\Http\Request;
 
-//use App\Http\Requests;
+use App\Http\Requests;
 
 class CategoriesController extends Controller
 {
     protected $categoryDB;
-	
-	public function __construct (App\CategoryDataAccess $cat)
-	{
-		$this->categoryDB = $cat;
-	}
+    
+    public function __construct (Category $cat)
+    {
+        $this->categoryDB = $cat;
+    }
 	//method to get and display all Product Categories
 	public function index()
-	{
-		 
-		//$category = App\Category::all();
-		$category = $this->categoryDB->GetAllCategories();
-		//dd($category);
-		return view('index', compact('category'));
-		
+	{ 
+		$category = $this->GetAllCategories();
+		return view('categories.index', compact('category'));	
 	}
+
+	public function search($results = [])
+	{
+		return view('categories.searchcategory',compact('results'));
+	}
+	 
+
+
+	public function doSearch(Request $request)
+	{
+		$this->validate($request, [
+			'name' => 'required|min:3|alpha_dash'
+		]);
+
+		$results = $this->catsearch($request);
+		return view('categories.categoryresults', compact('results'));
+		//return redirect()->action('CategoriesController@search', $results);
+	}
+
+
+	/*//////////////////////////////////////////////////////////////////////
+	*Data_Access Methods
+	*
+	*
+	*///////////////////////////////////////////////////////////////////////
+
+
+
+ public function GetAllCategories()
+    {
+		$result = Category::all();
+		return $result;
+    }
+
+    /**
+     * show details of a particular category
+     * @param $name string name of category
+     * @return mixed single Category
+     */
+    public function FindCategoryByName()
+    {
+
+    	//$searchresult = $request->input()->where('id')->get();
+      // $categoryName = Category::where('name',$name)->first();   
+		//return view('producr4tbycategoryResult',compact('categoryName'));
+		echo 'You can find a category by name';
+		return view('Categories.searchcategory');
+    }
+
+    public function catsearch(Request $request)
+    {
+    	//$q = Input::get('query');
+    	//$posts = $this->post->whereRaw("MATCH(title,body) AGAINT(? IN BOOLEAN MODE), array($q)")->get();
+    	$results = Category::where('name', 'like', $request->input('name').'%')->get();
+    	return $results;
+    }
+/*
+    public function SearchCategoryWithProducts(Request $request)
+    {
+    	$result = Category::with('products')->where('name',$request->input('name'))->get();
+    	return $result;
+    }
+
+*/
+
+
 	
-	
+	/***
 	//controller method to find category by Name
 	public function findCategoryByName($name )
 	{
@@ -34,7 +96,7 @@ class CategoriesController extends Controller
 		/*if(!$name || $name ===''){
 			redirect('SomeErrorPage.php');//redirect to an error Page
 			
-		}else{*/
+		}else{
 		$catName = $this->categoryDB->FindCategoryByName($name);
 		return view('findCat',compact('catName'));
 		//} end of the else statement
@@ -87,7 +149,7 @@ class CategoriesController extends Controller
 			redirect('page to redirect when an error occurs'); //the error page to send a user to
 		}else{
 			return $viewproductbycategory;
-		}*/
+		}
 		
 		
 		echo 'View the Product By Category on this page';
@@ -99,7 +161,7 @@ class CategoriesController extends Controller
 	/*
 	* method to retrieve the search result
 	*	@param 
-	*/
+	
 	public function viewProductByCategory(Request $name)
 	{
 		$viewproductbycategory = $name->input('name');
@@ -118,7 +180,7 @@ class CategoriesController extends Controller
 		
 			//r_dump($viewproductbycategory);
 	}
-
+*/
 	
 	
 }
