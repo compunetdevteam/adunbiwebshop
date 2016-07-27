@@ -6,21 +6,18 @@
  * Time: 2:51 PM
  */
 
-namespace App;
+namespace App\DataAccess\CategoryDataAccess;
 	
 
 use App\Category;
 
 class CategoryDataAccess
 {
-    public $category;
-
-    /**
-     * CategoryDataAccess constructor.
-     */
-    public function __construct()
+     protected $categoryDB;
+    
+    public function __construct (App\Category $cat)
     {
-		
+        $this->categoryDB = $cat;
     }
 
     /**
@@ -30,7 +27,7 @@ class CategoryDataAccess
 
     public function GetAllCategories()
     {
-		$result = Category::all();
+		$result = categoryDB->Category::all();
 		return $result;
     }
 

@@ -7,7 +7,7 @@
  */
 
 namespace App;
-
+use Carbon/Carbon;
 
 class SaleDataAccess
 {
@@ -73,12 +73,16 @@ class SaleDataAccess
 
         public function showsalesummaryperweek()
     {
-        $showsalessummaryperweek = DB::table('sales')
+     /*   $showsalessummaryperweek = DB::table('sales')
                 ->join ('product','sales.id','=','product.id')
                 ->sum('sales.total')
                 ->whereWeek('sales.saledate','=',date('w'));
                 ->get();
-        return $showsalessummaryperweek;
+        return $showsalessummaryperweek;*/
+
+
+        $showsalesummaryperweek = Sale::Carbon/Carbon()::week();
+        Sale::where('saledate', '')
     }
 
 
