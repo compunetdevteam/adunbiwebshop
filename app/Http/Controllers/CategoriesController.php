@@ -36,8 +36,8 @@ class CategoriesController extends Controller
 		]);
 
 		$results = $this->catsearch($request);
-		return view('categories.categoryresults', compact('results'));
-		//return redirect()->action('CategoriesController@search', $results);
+		//return view('categories.categoryresults', compact('results'));
+		return redirect()->action('CategoriesController@search', $results);
 	}
 
 
