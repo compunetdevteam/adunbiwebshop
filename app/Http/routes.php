@@ -95,3 +95,29 @@ Route::resource('roles', 'RoleController');
 Route::get('/', ['as' => 'dashboard', 'uses' => function() {
     return view('centaur.dashboard');
 }]);
+
+
+//Admin Interface
+Route::get('adminDashboard', function () {
+    return view('adminUI.adminDashboard');
+});
+
+Route::get('viewstaff', function () {
+    return view('adminUI.viewstaff');
+});
+
+Route::get('createstaff', function () {
+    return view('adminUI.createstaff');
+});
+
+Route::get('viewcustomer', function () {
+    return view('adminUI.viewcustomer');
+});
+
+Route::get('createpro', function () {
+    return view('adminUI.createpro');
+});
+
+
+
+
