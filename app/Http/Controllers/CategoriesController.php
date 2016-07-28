@@ -39,7 +39,12 @@ class CategoriesController extends Controller
 		//return view('categories.categoryresults', compact('results'));
 		return redirect()->action('CategoriesController@search', $results);
 	}
-
+/**
+ * method to display the the create category page
+ */
+	public function createcategory(){
+		return view('categories.createcategory');
+	}
 
 	/*//////////////////////////////////////////////////////////////////////
 	*Data_Access Methods

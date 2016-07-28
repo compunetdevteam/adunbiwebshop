@@ -6,15 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stock extends Model
 {
-    //a stock can have many category
-	public function categories()
-	{
-		return $this->hasMany(Category::class);
-	}
-	
 	public function products()
 	{
 		return $this->hasMany(Product::class);
+	}
+
+	/**
+	 * the hasManyThrough relationship between
+	 *
+	 */
+	public function categories()
+	{
+		return $this->hasManyThrough('App\Category','App\Product');
 	}
 	
 	

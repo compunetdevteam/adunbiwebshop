@@ -13,36 +13,12 @@ use App\Category;
 
 class CategoryDataAccess
 {
-     protected $categoryDB;
     
-    public function __construct (App\Category $cat)
-    {
-        $this->categoryDB = $cat;
-    }
 
-    /**
-     * return a list of categories 25 records at a time
-     * @return Collection of categories
-     */
+   
+   
 
-    public function GetAllCategories()
-    {
-		$result = categoryDB->Category::all();
-		return $result;
-    }
-
-    /**
-     * show details of a particular category
-     * @param $name string name of category
-     * @return mixed single Category
-     */
-    public function FindCategoryByName($name)
-    {
-      // $categoryName = Category::where('name',$name)->first();   
-		//return view('productbycategoryResult',compact('categoryName'));
-		echo 'You can find a category by name';
-		
-    }
+    
 
     /**
      * Update Category, method accepts id of
