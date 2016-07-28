@@ -55,7 +55,7 @@ class SalesController extends Controller
     public function edit(Request $request)
     {
         $allinput = $request->all();
-        $this->validate($allinput, [
+        $this->validate($request, [
             'customername' => 'required',
             'customeraddress' => 'max:255|alpha_num|alpha_dash',
             'customerphone' => 'required',

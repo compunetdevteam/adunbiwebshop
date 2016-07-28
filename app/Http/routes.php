@@ -22,7 +22,10 @@ Route::get('/', function () {
 Route::get('products','ProductsController@index');
 
 //find products by category
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/dev
 Route::get('findCat', 'CategoriesController@findCategoryByName');
 Route::get('createCatByName','CategoriesController@createProductCategory');
 
@@ -33,11 +36,13 @@ Route::get('products/doSearch','ProductsController@doSearch');
 Route::post('productbycategoryResult','CategoriesController@viewProductByCategory');
 Route::get('createcategory','CategoriesController@createcategory');
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('categories', 'CategoriesController@index');
 Route::get('categories/search','CategoriesController@search');
 Route::get('categories/doSearch', 'CategoriesController@doSearch');
-Route::get('categories/createcategory','CategoriesController@createcategory');
-Route::post('categories/save','CategoriesController@save');
+Route::get('Categories','CategoriesController@searchProductByCategory');
+Route::post('Categories','CategoriesController@viewProductByCategory');
+Route::get('Categories','CategoriesController@createcategory');
 
 
 ///Routes for SalesController and Sales Section of the Application////////////////////////////
