@@ -187,10 +187,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo5"><i class="fa fa-fw fa-list-alt"></i> Products <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo5" class="collapse">
                             <li>
-                                <a href="createpro">Create Products</a>
+                                <a href="products/create">Create Products</a>
                             </li>
                             <li>
-                                <a href="viewpro">View Products</a>
+                                <a href="products">View Products</a>
                             </li>
                          </ul>
                         
