@@ -42,7 +42,8 @@ class CategoriesController extends Controller
 /**
  * method to display the the create category page
  */
-	public function createcategory(){
+	public function createcategory()
+	{
 		return view('categories.createcategory');
 	}
 

@@ -199,7 +199,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo6"><i class="fa fa-fw fa-shopping-cart"></i> Sales <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo6" class="collapse">
                             <li>
-                                <a href="viewsales">View Sales</a>
+                                <a href="sales">View Sales</a>
                             </li>
                             <li>
                                 <a href="salessum">Sales Summary</a>
