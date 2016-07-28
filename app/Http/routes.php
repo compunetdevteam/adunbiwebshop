@@ -38,6 +38,10 @@ Route::get('products/search','ProductsController@search');
 Route::get('products/doSearch','ProductsController@doSearch');
 Route::post('productbycategoryResult','CategoriesController@viewProductByCategory');
 Route::get('createcategory','CategoriesController@createcategory');
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
 /////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('categories', 'CategoriesController@index');
 Route::get('categories/search','CategoriesController@search');
@@ -45,6 +49,10 @@ Route::get('categories/doSearch', 'CategoriesController@doSearch');
 Route::get('Categories','CategoriesController@searchProductByCategory');
 Route::post('Categories','CategoriesController@viewProductByCategory');
 Route::get('Categories','CategoriesController@createcategory');
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
 
 ///Routes for SalesController and Sales Section of the Application////////////////////////////
 Route::get('sales', 'SalesController@index');
