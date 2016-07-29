@@ -1,5 +1,6 @@
 
-@extends('centaur.layout')
+@extends('Centuar::layout')
+
 @section('content')
 <h1>Product search page</h1>
 {!!Form::open(array('url'=> 'products/doSearch','method'=>'get'))!!}
