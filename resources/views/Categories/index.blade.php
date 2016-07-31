@@ -1,4 +1,4 @@
-@extends('Centaur::layout')
+@extends('Centaur::dashlayout')
 
 @section('content')
 <h1>List of all Categories</h1>
