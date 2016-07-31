@@ -14,4 +14,4 @@
 			</table>
 </center>
 			{{$products->links()}}
-		@endsection()
+@endsection()

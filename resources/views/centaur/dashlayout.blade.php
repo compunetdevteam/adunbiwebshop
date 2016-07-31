@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="Adunbi Kiddies World Inc." content="">
-    <title>@yield('title')</title>
+    <meta name="author" content="">
+	<title>@yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +30,9 @@
 
 <body>
 
-    <div class="col-md-9" id="wrapper">
+
+
+    <div id="wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -158,16 +160,16 @@
 
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-user"></i> Staff <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo3" class="collapse">
+                       <ul id="demo3" class="collapse">
                             <li>
                                 <a href="createstaff">Create Staff</a>
                             </li>
-                            <li>
+                             <li>
                                 <a href="viewstaff">View Staff</a>
-                            </li>
-                            <li>
+                             </li>
+                              <li>
                                 <a href="assignrole">Assign Staff Role</a>
-                            </li>
+                             </li>
                         </ul>
 
                     </li>
@@ -190,7 +192,7 @@
                             <li>
                                 <a href="products">View Products</a>
                             </li>
-                        </ul>
+                         </ul>
 
                     </li>
                     <li>
@@ -209,7 +211,7 @@
 
                         </ul>
                     </li>
-                    <li>
+                      <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo7"><i class="fa fa-fw fa-briefcase"></i> Stocks<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo7" class="collapse">
                             <li>
@@ -238,23 +240,11 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
-        <!-- end Navigation bar -->
 
         <div id="page-wrapper">
 
             <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <h1 class="page-header">
-                           <center> <img src="../images/Adunbi Logo.png"/></center>
-                            
-                        </h1>
-                        @yield('content')
-                       </div>
-                </div>
-                <!-- /.row -->
+                @yield('content')
 
             </div>
             <!-- /.container-fluid -->
@@ -263,18 +253,18 @@
         <!-- /#page-wrapper -->
 
     </div>
-  <!-- /#wrapper -->
+    <!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
     <!-- Morris Charts JavaScript -->
     <script src="js/plugins/morris/raphael.min.js"></script>
     <script src="js/plugins/morris/morris.min.js"></script>
     <script src="js/plugins/morris/morris-data.js"></script>
 
 </body>
-
 </html>

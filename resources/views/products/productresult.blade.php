@@ -1,3 +1,6 @@
+@extends('Centaur::layout')
+
+@section('content')
 <div>
 <h1>Product search result</h1>
 <ul>
@@ -6,3 +9,4 @@
 <li><b>Name of description</b>{{$result['dateofpurchase']}}</li>
 </ul>
 </div>
+@endsection

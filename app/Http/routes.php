@@ -76,12 +76,13 @@ Route::resource('roles', 'RoleController');
 // Dashboard
 //Route::get('dashboard', ['as' => 'dashboard', 'uses' => function() {
 Route::get('/', ['as' => 'dashboard', 'uses' => function() {
-    return view('centaur.dashboard');
+    //return view('centaur.dashboard');
+    return view('centaur.admindash');
 }]);
 
 
 //Admin Interface
-Route::get('adminDashboard', function () {
+Route::get('admindashboard', function () {
     return view('adminUI.adminDashboard');
 });
 
