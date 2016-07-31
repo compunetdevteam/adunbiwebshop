@@ -1,11 +1,6 @@
-<html>
-<head>
-	<title>Adunbi Test</title>
-</head>
+@extends('Centaur::layout')
 
-
-<body>
-
+@section('content')
 <h1>List of all Categories</h1>
 	<table border="2">
 	
@@ -16,7 +11,4 @@
 	</ul>
 	</table>
 	
-	
-
-</body>
-</html>
+@endsection

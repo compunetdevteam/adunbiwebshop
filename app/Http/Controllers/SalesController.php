@@ -30,7 +30,7 @@ class SalesController extends Controller
         $allfields = $request->all(); // gets all the fields from the make sale page
         //later we will make the discount field guarded so a discount is given based on
         //certain criteria that must be fulfilled.
-        $this->validate($allfields, [
+        $this->validate($request, [
             'customername' => 'required',
             'customeraddress' => 'max:255|alpha_num|alpha_dash',
             'customerphone' => 'required',

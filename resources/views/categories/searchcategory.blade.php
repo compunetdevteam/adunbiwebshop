@@ -1,4 +1,4 @@
-@extends('centaur.layout')
+@extends('Centaur::layout')
 
 @section('content')
 <h1>Search For the Categories </h1>
@@ -21,11 +21,8 @@
 		@endif
 	</div>
 
-<div class="">
-@include('categories.categoryresults')
 
-</div>
-	
+@include('categories.categoryresults')
 
 @endsection	
 

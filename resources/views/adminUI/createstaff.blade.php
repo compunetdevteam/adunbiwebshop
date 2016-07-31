@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="Adunbi Kiddies World Inc." content="">
-    <title>@yield('title')</title>
+    <meta name="author" content="">
+
+    <title>:: Create:Staff ::</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -16,21 +17,19 @@
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    
 
 </head>
 
 <body>
 
-    <div class="col-md-9" id="wrapper">
+    <div id="wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -59,7 +58,7 @@
                                         <h5 class="media-heading"><strong>John Smith</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Some text here...</p>
+                                        <p>Some text...</p>
                                     </div>
                                 </div>
                             </a>
@@ -74,7 +73,7 @@
                                         <h5 class="media-heading"><strong>John Smith</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Some text here...</p>
+                                        <p>Some text...</p>
                                     </div>
                                 </div>
                             </a>
@@ -89,7 +88,7 @@
                                         <h5 class="media-heading"><strong>John Smith</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>SOme text here...</p>
+                                        <p>some text...</p>
                                     </div>
                                 </div>
                             </a>
@@ -148,28 +147,28 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="adminDashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                   
+                    <li>
+                        <a href="settings"><i class="fa fa-fw fa-wrench"></i> Settings</a>
+                    </li>
+                    
                     <li class="active">
-                        <a href="admin.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                    </li>
-
-                    <li>
-                        <a href="settings.php"><i class="fa fa-fw fa-wrench"></i> Settings</a>
-                    </li>
-
-                    <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-user"></i> Staff <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo3" class="collapse">
+                       <ul id="demo3" class="collapse">
                             <li>
                                 <a href="createstaff">Create Staff</a>
                             </li>
-                            <li>
+                             <li >
                                 <a href="viewstaff">View Staff</a>
-                            </li>
-                            <li>
+                             </li>
+                              <li>
                                 <a href="assignrole">Assign Staff Role</a>
-                            </li>
-                        </ul>
-
+                             </li>    
+                        </ul>  
+                        
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo4"><i class="fa fa-fw fa-table"></i> Customer <i class="fa fa-fw fa-caret-down"></i></a>
@@ -177,40 +176,40 @@
                             <li>
                                 <a href="viewcustomer">View Customers</a>
                             </li>
-
+                            
                         </ul>
                     </li>
-
+                    
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo5"><i class="fa fa-fw fa-list-alt"></i> Products <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo5" class="collapse">
                             <li>
-                                <a href="products/create">Create Products</a>
+                                <a href="createpro">Create Products</a>
                             </li>
                             <li>
-                                <a href="products">View Products</a>
+                                <a href="viewpro">View Products</a>
                             </li>
-                        </ul>
-
+                         </ul>
+                        
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo6"><i class="fa fa-fw fa-shopping-cart"></i> Sales <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo6" class="collapse">
                             <li>
-                                <a href="sales">View Sales</a>
+                                <a href="viewsales">View Sales</a>
                             </li>
                             <li>
                                 <a href="salessum">Sales Summary</a>
                             </li>
-
+                            
                             <li>
                                 <a href="setdiscount">Set Discount</a>
                             </li>
-
+                            
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo7"><i class="fa fa-fw fa-briefcase"></i> Stocks<i class="fa fa-fw fa-caret-down"></i></a>
+                      <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo7"><i class="fa fa-fw fa-briefcase"></i> Stocks<i class="fa fa-fw fa-caret-down"></i></a>		
                         <ul id="demo7" class="collapse">
                             <li>
                                 <a href="viewstock">View Stocks</a>
@@ -218,27 +217,26 @@
                             <li>
                                 <a href="newarrivals">New Arrivals</a>
                             </li>
-
+                            
                         </ul>
-
+                        
                     </li>
-
+                    
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo8"><i class="fa fa-user"></i> Suppliers <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo8" class="collapse">
                             <li>
                                 <a href="viewsupp">View Suppliers</a>
                             </li>
-
+                            
                         </ul>
                     </li>
-
-
+                    
+               
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </nav>
-        <!-- end Navigation bar -->
 
         <div id="page-wrapper">
 
@@ -246,14 +244,76 @@
 
                 <!-- Page Heading -->
                 <div class="row">
-                    <div class="col-lg-12 col-md-12">
+                  <div class="col-lg-12">
                         <h1 class="page-header">
-                           <center> <img src="../images/Adunbi Logo.png"/></center>
-                            
+                           <i class="fa fa-fw fa-pencil"></i> Staff/ <small>Create Staff</small>
                         </h1>
-                        @yield('content')
-                       </div>
+</div>
                 </div>
+                
+
+                <div class="row">
+<div class="col-lg-4">
+            <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-fw fa-pencil"></i> Create staff Form </h3>
+              </div>
+              
+              					
+              
+                            <div class="panel-body">
+                                <div class="list-group">
+                               		<form role="form">
+                            		 <div class="form-group input-group ">
+                                        <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+                                        <input type="text" class="form-control" placeholder="Firstname" required />
+                                   	 </div>
+                                     <div class="form-group input-group ">
+                                        <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+                                        <input type="text" class="form-control" placeholder="Lastname" required />
+                                     </div>
+                                     <div class="form-group input-group ">
+                                        <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+                                        <input type="text" class="form-control" placeholder="Middlename" required />
+                                     </div>
+									 <div class="form-group input-group ">
+                                        <span class="input-group-addon"><i class="fa fa-fw fa-envelope"></i></span>
+                                        <input type="text" class="form-control" placeholder="Email" required />
+                                     </div>
+                                     <div class="form-group input-group">
+                                        <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+                                        <input type="text" class="form-control" placeholder="Designation" required />
+                                     </div>
+									 <div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+										<select id="done" class="form-control selectpicker" data-mobile="true" >
+										  <option>--Select--</option>
+										  <option>One</option>
+										  <option>Two</option>
+										  <option>Three</option>
+										  <option>Apple</option>
+										  <option>Banana</option>
+										  <option>Orange</option>
+										  <option>Pineapple</option>
+										  <option>Apple2</option>
+										  <option>Banana2</option>
+										  <option>Orange2</option>
+										  <option>Pineapple2</option>
+										</select>
+									 </div>
+                                     
+									 </br>
+                                     
+                                     
+                                                                 
+                                     
+                                     <button type="submit" class="btn btn-primary">Create</button>
+                         		</form>
+                                </div>
+                            </div>
+          </div>
+                  </div>
+</div>
                 <!-- /.row -->
 
             </div>
@@ -263,13 +323,14 @@
         <!-- /#page-wrapper -->
 
     </div>
-  <!-- /#wrapper -->
+    <!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
     <!-- Morris Charts JavaScript -->
     <script src="js/plugins/morris/raphael.min.js"></script>
     <script src="js/plugins/morris/morris.min.js"></script>
@@ -278,3 +339,5 @@
 </body>
 
 </html>
+
+
