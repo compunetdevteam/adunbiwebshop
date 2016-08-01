@@ -1,5 +1,5 @@
 
-@extends('Centaur::layout')
+@extends('Centaur::dashlayout')
 
 @section('content')
 		<h1>Product search page</h1>
