@@ -22,9 +22,9 @@ class CategoriesController extends Controller
 		return view('categories.index', compact('category'));	
 	}
 
-	public function search($results = [])
+	public function search()
 	{
-		return view('categories.searchcategory',compact('results'));
+		return view('categories.searchcategory');
 	}
 	 
 
@@ -36,8 +36,7 @@ class CategoriesController extends Controller
 		]);
 
 		$results = $this->catsearch($request);
-		//return view('categories.categoryresults', compact('results'));
-		return redirect()->action('CategoriesController@search', $results);
+		return view('categories.searchresults', compact('results'));
 	}
 /**
  * method to display the the create category page
@@ -78,8 +77,6 @@ class CategoriesController extends Controller
 
     public function catsearch(Request $request)
     {
-    	//$q = Input::get('query');
-    	//$posts = $this->post->whereRaw("MATCH(title,body) AGAINT(? IN BOOLEAN MODE), array($q)")->get();
     	$results = Category::where('name', 'like', $request->input('name').'%')->get();
     	return $results;
     }

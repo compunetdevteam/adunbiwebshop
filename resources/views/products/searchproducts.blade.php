@@ -1,4 +1,3 @@
-
 @extends('Centaur::dashlayout')
 
 @section('content')

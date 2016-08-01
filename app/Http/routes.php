@@ -32,7 +32,7 @@ Route::get('createcategory','CategoriesController@createcategory');
 /////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('categories', 'CategoriesController@index');
 Route::get('categories/search','CategoriesController@search');
-Route::get('categories/doSearch', 'CategoriesController@doSearch');
+Route::post('categories/doSearch', 'CategoriesController@doSearch');
 Route::get('Categories','CategoriesController@searchProductByCategory');
 Route::post('Categories','CategoriesController@viewProductByCategory');
 Route::get('Categories','CategoriesController@createcategory');

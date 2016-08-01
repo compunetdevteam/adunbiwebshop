@@ -3,7 +3,7 @@
 @section('content')
 <h1>Search For the Categories </h1>
 	
-	{!!Form::open(array('url' => 'categories/doSearch', 'method' => 'get')) !!}
+	{!!Form::open(array('url' => 'categories/doSearch', 'method' => 'post')) !!}
 			{!!Form::label('Search For Category') !!}
 				{!!Form::text('name',null,array('class'=>'form-control')) !!}
 				{!! Form::submit('Search Category')!!}
@@ -20,9 +20,6 @@
 			</div>
 		@endif
 	</p>
-
-
-@include('categories.categoryresults')
 
 @endsection
 
