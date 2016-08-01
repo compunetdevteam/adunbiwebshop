@@ -20,19 +20,26 @@ class ProductsController extends Controller
 	public function index()
 		{
 
+		// $category = $this->GetAllCategories();
+		// return view('categories.index', compact('category'));
 			$products = $this->listProducts();
 			return view('products.index',compact('products'));
+
+			
 			
 		}
 	/**
 	 * Return collection of products
 	 * @return collection of products
 	 */
-	public function listProducts()
+	/**public function search()
 	{
-		$products = Product::paginate(15);
-		return $products;
+		//return view('categories.searchcategory');
+		
+		return view('products.searchproduct');
+		
 	}
+	*/
 	/**
 	 * [doSearch description]
 	 * @param  Request $request [description]
@@ -40,6 +47,8 @@ class ProductsController extends Controller
 	 */
 	public function doSearch(Request $request)
 	{
+
+	
 		$this->validate($request, ['name'=> 'required|min:3|alpha_dash']);
 		$results = $this->productsearch($request);
 		return view('products.productresult', compact('results'));
