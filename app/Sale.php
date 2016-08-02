@@ -29,6 +29,15 @@ class Sale extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function setUserId($userid)
+    {
+        if($userid === $this->user()->firstorfail('id')->get())
+        {
+            return $this->user_id = $this->user()->firstorfail('id')->get();
+        }
+
+    }
     
    
 }

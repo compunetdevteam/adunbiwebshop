@@ -17,7 +17,7 @@ class Stock extends Model
 	 */
 	public function categories()
 	{
-		return $this->hasManyThrough('App\Category','App\Product');
+		return $this->hasMany(Category::class);
 	}
 	
 	

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Sale;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -30,6 +31,7 @@ class SalesController extends Controller
         $allfields = $request->all(); // gets all the fields from the make sale page
         //later we will make the discount field guarded so a discount is given based on
         //certain criteria that must be fulfilled.
+
         $this->validate($request, [
             'customername' => 'required',
             'customeraddress' => 'max:255|alpha_num|alpha_dash',
@@ -39,7 +41,13 @@ class SalesController extends Controller
             'subtotal'    => 'numeric|required|max:9',
             'total'       => 'numeric|required|max:9'
         ]);
-        $sale = $this->MakeASale($allfields);
+        $loggedinuser = Sentinel::check(); //returns false if there is no user loggedin
+        if(!$loggedinuser)
+        {
+            //return exception AnonymousUserException
+        }
+        $userid = \Cartalyst\Sentinel\Sentinel::getUser()->getUserId();
+        $sale = $this->MakeASale($allfields, $userid);
 
         if(is_a($sale, 'Sale'))
         {
@@ -66,6 +74,21 @@ class SalesController extends Controller
         $updatedsale = $this->UpdateASale($allinput);
         return redirect()->action('SaleController@details');
     }
+
+    public function delete(Sale $sale)
+    {
+        return view('sales.delete', compact('sale'));
+    }
+
+    public function confirmDelete($id)
+    {
+        $result = $this->DeleteASale($id);
+        if($result === 0)
+        {
+            //throw an exception and handle
+        }
+        return redirect()->action('SalesController', 'index');
+    }
     
     
     
@@ -77,9 +100,12 @@ class SalesController extends Controller
      * @param array $salearray
      * @return Sale model Instance created
      */
-    public function MakeASale($salearray = array())
+    public function MakeASale($salearray = array(), $userid)
     {
-        $result = Sale::create($salearray);
+        //$result = Sale::create($salearray);
+        $sale = new Sale;
+        $result = $sale->create($salearray);
+        $sale->setUserId($userid);
         return $result;
     }
 
@@ -87,5 +113,11 @@ class SalesController extends Controller
     {
         $update = Sale::update($sale->all());
         return $update;
+    }
+
+    public function DeleteASale($id)
+    {
+        //$sle = Sale::where('id',$id)->get();
+        Sale::destroy($id);
     }
 }

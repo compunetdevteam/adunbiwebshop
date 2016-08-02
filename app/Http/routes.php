@@ -39,6 +39,8 @@ Route::get('Categories','CategoriesController@createcategory');
 
 ///Routes for SalesController and Sales Section of the Application////////////////////////////
 Route::get('sales', 'SalesController@index');
+Route::get('sales/details/{sale}', 'SalesController@index');
+Route::post('sales/edit/{id}', 'SalesController@index');
 
 ///////////////Stock Routes/////////////////
 Route::get('stocks', 'StocksController@index');
