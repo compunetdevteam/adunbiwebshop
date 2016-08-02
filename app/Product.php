@@ -58,7 +58,7 @@ class Product extends Model
      * Many products can be supplied by a supplier
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function suppliers()
+    public function supplier()
     {
         return $this->belongsTo(Supplier::class);
     }

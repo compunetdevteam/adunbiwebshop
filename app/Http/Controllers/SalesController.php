@@ -18,7 +18,8 @@ class SalesController extends Controller
 
     public function createSale()
     {
-        return view('sales.makesale');
+        $users = User::lists('name','id');
+        return view('sales.makesale',compact('users'));
     }
 
     /**
