@@ -20,8 +20,6 @@ class ProductsController extends Controller
 	public function index()
 		{
 
-		// $category = $this->GetAllCategories();
-		// return view('categories.index', compact('category'));
 			$products = $this->listProducts();
 			return view('products.index',compact('products'));
 
@@ -32,14 +30,7 @@ class ProductsController extends Controller
 	 * Return collection of products
 	 * @return collection of products
 	 */
-	/**public function search()
-	{
-		//return view('categories.searchcategory');
-		
-		return view('products.searchproduct');
-		
-	}
-	*/
+	
 	/**
 	 * [doSearch description]
 	 * @param  Request $request [description]
@@ -76,6 +67,73 @@ class ProductsController extends Controller
     	return $results;
        // return $this->product->with('supplier')->all()->find($name);
     } //$reques
+
+/**
+ * [createproduct description]
+ * @return \Illuminate\Http\RedirectResponse
+ */
+    public function createproduct()
+    {
+    	return view ('products.createproduct');
+    }
 		
-	
-}
+	public function newproductform(Request $request)
+	{
+		$allfields = $request->all();
+		$this -> validate($request, [
+			'productname' => 'required',
+			'dateofpurchase' => 'required',
+			'batchnumber' => 'numeric',
+			'serialnumber' => 'numeric',
+			'costprice' => 'numeric',
+			'sellingprice' => 'numeric',
+			'description' =>'max:255|alpha_num|alpha_dash',
+			'weight' =>'numeric'
+		]);
+		$product = new Product;
+		$product->productname = $request->input('productname');
+		$product->dateofpurchase = $request->input('dateofpurchase');
+		$product->batchnumber = $request->input('batchnumber');
+		$product->serialnumber = $request->input('serialnumber');
+		$product->costprice = $request->input('costprice');
+		$product->sellingprice = $request->input('sellingprice');
+		$product->description = $request->input('description');
+		$product->weight = $request->input('weight');
+
+		$product->save();
+		//$product = $this->createAProduct($allinput);
+		//return redirect()->action(ProductsController@details);
+	} 
+	public function create()
+	{
+		return view('products.newproductform');
+	}
+	/**
+	 * [delete products]
+	 * @param  Product $product [description]
+	 * @return [type]           [description]
+	 */
+	public function delete(Product $product)
+	{
+		return view('Product.delete', compact('product'));
+	}
+
+	public function confirmDelete($id)
+	{
+		$results = $this->DeleteAProduct($id);
+		if($results === 0)
+		{
+			//throw an exception and handle
+			echo" No product to delete";
+		}
+		return redirect()->action('ProductsController', 'index');
+	}
+
+	/**public function makeAproduct($productarray = array(),$product_id)
+	{
+		$product = new Product;
+		$results = $product->create($productarray)
+	}
+	*/
+	 
+} 
