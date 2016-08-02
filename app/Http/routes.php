@@ -46,7 +46,18 @@ Route::post('sales/edit/{id}', 'SalesController@index');
 Route::get('stocks', 'StocksController@index');
 Route::get('stocks/{stock}', 'StocksController@details');
 Route::get('getstocks', 'StocksController@displaystock');
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////Supplier Route//////////////////////////////
+Route::get('suppliers','SuppliersController@index');
+Route::get('suppliers/createsupplier','SuppliersController@displayCreatePage');
+Route::post('suppliers/saveSupplier','SuppliersController@saveSupplier');
+
+Route::get('supplier/showupdatepage', 'SuppliersController@showupdatepage');
+Route::post('suppliers/UpdateSupplier/{id}', 'SuppliersController@UpdateSupplier');
+Route::get('suppliers/DeleteSupplier', 'SuppliersController@DeleteSupplier');
+///////////////////////////////////////////////////////////
 
 
 // Authorization
