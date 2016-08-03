@@ -24,6 +24,7 @@ Route::get('products/search','ProductsController@search');
 Route::get('products/doSearch','ProductsController@doSearch');
 Route::get('products/details/{products}','ProductsController@index');
 Route::get('products/create','ProductsController@create');
+Route::post('products/save', 'ProductsController@newproductform');
 
 //find products by category
 Route::get('findCat', 'CategoriesController@findCategoryByName');

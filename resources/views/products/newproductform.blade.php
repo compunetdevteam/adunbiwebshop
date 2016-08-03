@@ -2,7 +2,7 @@
 
 @section('content')
 		<h1> Add New Product </h1>
-		{!!Form::open(array('url'=> 'products/create','method'=>'post', 'role'=>'form'))!!}
+		{!!Form::open(array('url'=> 'products/save','method'=>'post', 'role'=>'form'))!!}
 			<div class="form-group">
 			{!!Form::label('Product name')!!}
 			{!!Form::text('productname',null, array('class' => 'form-control'))!!}
@@ -34,6 +34,14 @@
 			<div class="form-group">
 			{!!Form::label('Weight')!!}
 			{!!Form::text('weight',null,array('class' => 'form-control'))!!}
+			</div>
+			<div class="form-group">
+				{!!Form::label('Stock :')!!}
+				{!!Form::select('stock', $stocks, null,['class' => 'form-control'])!!}
+			</div>
+			<div class="form-group">
+			{!!Form::label('Supplier :')!!}
+			{!!Form::select('Supplier', $suppliers, null,['class' => 'form-control'])!!}
 			</div>
 			{!!Form::submit('Submit')!!}
 		{!!Form::close()!!}

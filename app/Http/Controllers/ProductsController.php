@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Category;
 use App\Product;
+use App\Supplier;
+use DB;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -42,7 +46,7 @@ class ProductsController extends Controller
     public function productsearch(Request $request)
     {
     	//$results = Product::where('productname','like', $request->input('name').'%')->get();
-    	$results = Product::find()
+    	$results = Product::find();
     	return $results;
     }
 
@@ -52,37 +56,33 @@ class ProductsController extends Controller
 	 */
     public function create()
     {
-    	return view ('products.newproductform');
+    	$result = DB::table('stocks')->join('categories','stocks.id','=','categories.stock_id')
+									 ->select('categories.name','stock_id')->pluck('name','stock_id');
+        $stocks = new Collection($result);
+    	$suppliers = Supplier::lists('suppliername','id');
+    	return view ('products.newproductform', compact('suppliers','stocks'));
     }
 		
 	public function newproductform(Request $request)
 	{
-		$allfields = $request->all();
-		$this -> validate($request, [
+		$this->validate($request, [
 			'productname' => 'required',
 			'dateofpurchase' => 'required',
-			'batchnumber' => 'numeric',
-			'serialnumber' => 'numeric',
+			'batchnumber' => 'required',
+			'serialnumber' => 'required',
 			'costprice' => 'numeric',
 			'sellingprice' => 'numeric',
-			'description' =>'max:255|alpha_num|alpha_dash',
-			'weight' =>'numeric'
+			'description' =>'',
+			'weight' =>'numeric',
+			'Supplier' => 'numeric',
+			'stock' => 'numeric'
 		]);
-		$product = new Product;
-		$product->productname = $request->input('productname');
-		$product->dateofpurchase = $request->input('dateofpurchase');
-		$product->batchnumber = $request->input('batchnumber');
-		$product->serialnumber = $request->input('serialnumber');
-		$product->costprice = $request->input('costprice');
-		$product->sellingprice = $request->input('sellingprice');
-		$product->description = $request->input('description');
-		$product->weight = $request->input('weight');
-		$product->stock_id = 0;
-		$product->sale_id = 0;
-		$product->supplier_id = 0;
-
-		$product->save();
-	} 
+        $product = $this->SaveProducts($request);
+		if($product)
+        {
+            return redirect()->action('ProductsController@index');
+        }
+	}
 
 	/**
 	 * [delete products]
@@ -111,8 +111,26 @@ class ProductsController extends Controller
 	 */
 	public function ListProducts()
 	{
-		return Product::paginate(15);
+		return Product::orderby('created_at')->paginate(15);
 	}
+
+    public function SaveProducts(Request $request)
+    {
+        $product = new Product;
+        $product->productname = $request->input('productname');
+        $product->dateofpurchase = $request->input('dateofpurchase');
+        $product->batchnumber = $request->input('batchnumber');
+        $product->serialnumber = $request->input('serialnumber');
+        $product->costprice = $request->input('costprice');
+        $product->sellingprice = $request->input('sellingprice');
+        $product->description = $request->input('description');
+        $product->weight = $request->input('weight');
+        $product->stock_id = $request->input('stock');
+        $product->supplier_id = $request->input('Supplier');
+
+        $product->save();
+        return $product;
+    }
 
 	/**
 	public function GetProductsByName($name)
@@ -121,11 +139,4 @@ class ProductsController extends Controller
 		$result = new Eloquent\Collection($resultarray);
 		return $result;
 	}**/
-	/**public function makeAproduct($productarray = array(),$product_id)
-	{
-		$product = new Product;
-		$results = $product->create($productarray)
-	}
-	*/
-	 
 } 
