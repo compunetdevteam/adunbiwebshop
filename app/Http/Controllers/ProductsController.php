@@ -18,18 +18,10 @@ class ProductsController extends Controller
 
 
 	public function index()
-		{
-
-			$products = $this->listProducts();
-			return view('products.index',compact('products'));
-
-			
-			
-		}
-	/**
-	 * Return collection of products
-	 * @return collection of products
-	 */
+	{
+		$products = $this->listProducts();
+		return view('products.index',compact('products'));		
+	}
 	
 	/**
 	 * [doSearch description]
@@ -38,12 +30,9 @@ class ProductsController extends Controller
 	 */
 	public function doSearch(Request $request)
 	{
-
-	
 		$this->validate($request, ['name'=> 'required|min:3|alpha_dash']);
 		$results = $this->productsearch($request);
 		return view('products.productresult', compact('results'));
-		//dd('products');
 	}
 	/**
 	 * [search description]
@@ -55,7 +44,6 @@ class ProductsController extends Controller
 		return view('products.searchproducts',compact('results'));
 	}
 
-
 	/**
      * Load and find the products supplied by a supplier's name
      * @param string $name
@@ -65,13 +53,12 @@ class ProductsController extends Controller
     {
     	$results = Product::where('productname','like', $request->input('name').'%')->get();
     	return $results;
-       // return $this->product->with('supplier')->all()->find($name);
-    } //$reques
+    }
 
-/**
- * [createproduct description]
- * @return \Illuminate\Http\RedirectResponse
- */
+	/**
+	 * [createproduct description]
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
     public function createproduct()
     {
     	return view ('products.createproduct');
@@ -101,13 +88,8 @@ class ProductsController extends Controller
 		$product->weight = $request->input('weight');
 
 		$product->save();
-		//$product = $this->createAProduct($allinput);
-		//return redirect()->action(ProductsController@details);
 	} 
-	public function create()
-	{
-		return view('products.newproductform');
-	}
+
 	/**
 	 * [delete products]
 	 * @param  Product $product [description]
