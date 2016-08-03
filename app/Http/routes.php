@@ -57,7 +57,7 @@ Route::get('suppliers','SuppliersController@index');
 Route::get('suppliers/createsupplier','SuppliersController@displayCreatePage');
 Route::post('suppliers/saveSupplier','SuppliersController@saveSupplier');
 
-Route::get('supplier/showupdatepage', 'SuppliersController@showupdatepage');
+Route::get('supplier/showupdatepage/{id}', 'SuppliersController@showupdatepage');
 Route::post('suppliers/UpdateSupplier/{id}', 'SuppliersController@UpdateSupplier');
 Route::get('suppliers/DeleteSupplier', 'SuppliersController@DeleteSupplier');
 ///////////////////////////////////////////////////////////

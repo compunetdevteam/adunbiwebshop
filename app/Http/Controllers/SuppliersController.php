@@ -38,8 +38,9 @@ class SuppliersController extends Controller
 //method to only display the update page
    public function showupdatepage($id)
    {
-      $updatepage =  Supplier::find($id);
-      return view('supplier.showupdatepage', compact('updatepage'));
+     // dd('this is my update page with an ID of :',$id);
+       $updatepage =  Supplier::find($id)->get();
+      return view('suppliers.showupdatepage', compact('updatepage'));
    }
    
    public function UpdateSupplier(Request $request,$id)
