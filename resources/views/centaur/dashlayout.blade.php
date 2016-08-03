@@ -11,13 +11,13 @@
 	<title>@yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="{{url('css/sb-admin.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{url('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"> <img src="images/Adunbi Logo.png" width="150px" height="100px"/></a>
+                <a class="navbar-brand" href="index.html"> <img src="{{url('images/Adunbi Logo.png')}}" width="160px" height="105px"/></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">

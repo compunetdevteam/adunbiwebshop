@@ -2,7 +2,8 @@
 
 @section('content')
 
-    <div>
+<div class="row">
+    <div class="col-lg-10">
         <h1>Category Search Results</h1>
         <ul>
             @foreach($results as $result)
@@ -12,5 +13,5 @@
 
         </ul>
     </div>
-
+</div>
 @endsection

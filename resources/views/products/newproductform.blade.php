@@ -2,23 +2,39 @@
 
 @section('content')
 		<h1> Add New Product </h1>
-		{!!Form::open(array('url'=> 'products/create','method'=>'post'))!!}
+		{!!Form::open(array('url'=> 'products/create','method'=>'post', 'role'=>'form'))!!}
+			<div class="form-group">
 			{!!Form::label('Product name')!!}
-				{!!Form::text('productname',null)!!}
-				{!!Form::label('Date of purchase')!!}
-				{!!Form::text('dateofpurchase',null)!!}
-				{!!Form::label('Batch number')!!}
-				{!!Form::text('batchnumber',null)!!}
-				{!!Form::label('Serial number')!!}
-				{!!Form::text('serialnumber',null)!!}
-				{!!Form::label('Cost price')!!}
-				{!!Form::text('costprice',null)!!}
-				{!!Form::label('Selling price')!!}
-				{!!Form::text('sellingprice',null)!!}
-				{!!Form::label('Product Description')!!}
-				{!!Form::text('description',null)!!}
-				{!!Form::label('Weight')!!}
-				{!!Form::text('weight',null)!!}
+			{!!Form::text('productname',null, array('class' => 'form-control'))!!}
+			</div>
+			<div class="form-group">
+			{!!Form::label('Date of purchase')!!}
+			{!!Form::text('dateofpurchase',null,array('class' => 'form-control'))!!}
+			</div>
+			<div class="form-group">
+			{!!Form::label('Batch number')!!}
+			{!!Form::text('batchnumber',null,array('class' => 'form-control'))!!}
+			</div>
+			<div class="form-group">
+			{!!Form::label('Serial number')!!}
+			{!!Form::text('serialnumber',null,array('class' => 'form-control'))!!}
+			</div>
+			<div class="form-group">
+			{!!Form::label('Cost price')!!}
+			{!!Form::text('costprice',null,array('class' => 'form-control'))!!}
+			</div>
+			<div class="form-group">
+			{!!Form::label('Selling price')!!}
+			{!!Form::text('sellingprice',null,array('class' => 'form-control'))!!}
+			</div>
+			<div class="form-group">
+			{!!Form::label('Product Description')!!}
+			{!!Form::text('description',null,array('class' => 'form-control'))!!}
+			</div>
+			<div class="form-group">
+			{!!Form::label('Weight')!!}
+			{!!Form::text('weight',null,array('class' => 'form-control'))!!}
+			</div>
 			{!!Form::submit('Submit')!!}
 		{!!Form::close()!!}
 		<div>

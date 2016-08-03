@@ -7,19 +7,9 @@ use App\Http\Requests;
 
 class ProductsController extends Controller
 {
-
-	protected $productDB;
-
-	public function __construct(Product $product)
-	{
-
-		$this->productDB = $product;
-	}
-
-
 	public function index()
 	{
-		$products = $this->listProducts();
+		$products = $this->ListProducts();
 		return view('products.index',compact('products'));		
 	}
 	
@@ -51,7 +41,8 @@ class ProductsController extends Controller
      */
     public function productsearch(Request $request)
     {
-    	$results = Product::where('productname','like', $request->input('name').'%')->get();
+    	//$results = Product::where('productname','like', $request->input('name').'%')->get();
+    	$results = Product::find()
     	return $results;
     }
 
@@ -59,9 +50,9 @@ class ProductsController extends Controller
 	 * [createproduct description]
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
-    public function createproduct()
+    public function create()
     {
-    	return view ('products.createproduct');
+    	return view ('products.newproductform');
     }
 		
 	public function newproductform(Request $request)
@@ -86,6 +77,9 @@ class ProductsController extends Controller
 		$product->sellingprice = $request->input('sellingprice');
 		$product->description = $request->input('description');
 		$product->weight = $request->input('weight');
+		$product->stock_id = 0;
+		$product->sale_id = 0;
+		$product->supplier_id = 0;
 
 		$product->save();
 	} 
@@ -111,6 +105,22 @@ class ProductsController extends Controller
 		return redirect()->action('ProductsController', 'index');
 	}
 
+
+	/**
+	 * Data Access Methods
+	 */
+	public function ListProducts()
+	{
+		return Product::paginate(15);
+	}
+
+	/**
+	public function GetProductsByName($name)
+	{
+		$resultarray = DB::table('products')->select('productname', 'sellingprice', 'serialnumber', 'batchnumber')->where('productname','=',$name)->get();
+		$result = new Eloquent\Collection($resultarray);
+		return $result;
+	}**/
 	/**public function makeAproduct($productarray = array(),$product_id)
 	{
 		$product = new Product;
