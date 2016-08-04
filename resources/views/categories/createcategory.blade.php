@@ -1,4 +1,4 @@
-@extends('centaur.layout')
+@extends('Centaur::dashlayout')
 
 @section('content')
 <h1>Add New Categories</h1>
@@ -7,10 +7,17 @@
 </div>
 <div class="form-group">
 	{!!Form::label('Enter Category Name :')!!}
-		{!!Form::text('name')!!} 
+		{!!Form::text('name',null,array('class' => 'form-control'))!!}
 	</div>
+
+<div class="form-group">
+	{!!Form::label('Stock :')!!}
+	{!!Form::select('categories', $categories, null,['class' => 'form-control'])!!}
+</div>
+
 		<div class="form-group">
-		{!!Form::textarea('description')!!}
+			{!!Form::label('Enter Description :')!!}
+		{!!Form::textarea('description',null,array('class' => 'form-control'))!!}
 		</div>
 		<div class="form-group">
 		{!!Form::submit('Save Category')!!}

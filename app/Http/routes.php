@@ -38,7 +38,7 @@ Route::get('categories/search','CategoriesController@search');
 Route::post('categories/doSearch', 'CategoriesController@doSearch');
 Route::get('Categories','CategoriesController@searchProductByCategory');
 Route::post('Categories','CategoriesController@viewProductByCategory');
-Route::get('Categories','CategoriesController@createcategory');
+Route::get('categories/createcategory','CategoriesController@createcategory');
 
 ///Routes for SalesController and Sales Section of the Application////////////////////////////
 Route::get('sales', 'SalesController@index');

@@ -43,6 +43,7 @@ class CategoriesController extends Controller
  */
 	public function createcategory()
 	{
+		
 		return view('categories.createcategory');
 	}
 
@@ -67,7 +68,7 @@ class CategoriesController extends Controller
      */
     public function FindCategoryByName()
     {
-
+		
     	//$searchresult = $request->input()->where('id')->get();
       // $categoryName = Category::where('name',$name)->first();   
 		//return view('producr4tbycategoryResult',compact('categoryName'));
