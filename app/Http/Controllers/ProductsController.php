@@ -1,38 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Category;
 use App\Product;
+use App\Supplier;
+use DB;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
 class ProductsController extends Controller
 {
-
-	protected $productDB;
-
-	public function __construct(Product $product)
-	{
-
-		$this->productDB = $product;
-	}
-
-
 	public function index()
-		{
-
-			$products = $this->listProducts();
-			return view('products.index',compact('products'));
-			
-		}
-	/**
-	 * Return collection of products
-	 * @return collection of products
-	 */
-	public function listProducts()
 	{
-		$products = Product::paginate(15);
-		return $products;
+		$products = $this->ListProducts();
+		return view('products.index',compact('products'));		
 	}
+	
 	/**
 	 * [doSearch description]
 	 * @param  Request $request [description]
@@ -43,7 +27,6 @@ class ProductsController extends Controller
 		$this->validate($request, ['name'=> 'required|min:3|alpha_dash']);
 		$results = $this->productsearch($request);
 		return view('products.productresult', compact('results'));
-		//dd('products');
 	}
 	/**
 	 * [search description]
@@ -52,9 +35,8 @@ class ProductsController extends Controller
 	 */
 	public function search($results = [])
 	{
-		return view('products.searchproducts',compact('results'));
+		return view('products.searchproducts');
 	}
-
 
 	/**
      * Load and find the products supplied by a supplier's name
@@ -63,10 +45,98 @@ class ProductsController extends Controller
      */
     public function productsearch(Request $request)
     {
-    	$results = Product::where('productname','like', $request->input('name').'%')->get();
-    	return $results;
-       // return $this->product->with('supplier')->all()->find($name);
-    } //$reques
+    	
+    	$results = Product::where('productname','like',$request->input('name').'%')->get();
+    	return $results;//$name;
+    }
+
+	/**
+	 * [createproduct description]
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+    public function create()
+    {
+    	$result = DB::table('stocks')->join('categories','stocks.id','=','categories.stock_id')
+									 ->select('categories.name','stock_id')->pluck('name','stock_id');
+        $stocks = new Collection($result);
+    	$suppliers = Supplier::lists('suppliername','id');
+    	return view ('products.newproductform', compact('suppliers','stocks'));
+    }
 		
-	
-}
+	public function newproductform(Request $request)
+	{
+		$this->validate($request, [
+			'productname' => 'required',
+			'dateofpurchase' => 'required',
+			'batchnumber' => 'required',
+			'serialnumber' => 'required',
+			'costprice' => 'numeric',
+			'sellingprice' => 'numeric',
+			'description' =>'',
+			'weight' =>'numeric',
+			'Supplier' => 'numeric',
+			'stock' => 'numeric'
+		]);
+        $product = $this->SaveProducts($request);
+		if($product)
+        {
+            return redirect()->action('ProductsController@index');
+        }
+	}
+
+	/**
+	 * [delete products]
+	 * @param  Product $product [description]
+	 * @return [type]           [description]
+	 */
+	public function delete(Product $product)
+	{
+		return view('Product.delete', compact('product'));
+	}
+
+	public function confirmDelete($id)
+	{
+		$results = $this->DeleteAProduct($id);
+		if($results === 0)
+		{
+			//throw an exception and handle
+			echo" No product to delete";
+		}
+		return redirect()->action('ProductsController', 'index');
+	}
+
+
+	/**
+	 * Data Access Methods
+	 */
+	public function ListProducts()
+	{
+		return Product::orderby('created_at')->paginate(15);
+	}
+
+    public function SaveProducts(Request $request)
+    {
+        $product = new Product;
+        $product->productname = $request->input('productname');
+        $product->dateofpurchase = $request->input('dateofpurchase');
+        $product->batchnumber = $request->input('batchnumber');
+        $product->serialnumber = $request->input('serialnumber');
+        $product->costprice = $request->input('costprice');
+        $product->sellingprice = $request->input('sellingprice');
+        $product->description = $request->input('description');
+        $product->weight = $request->input('weight');
+        $product->stock_id = $request->input('stock');
+        $product->supplier_id = $request->input('Supplier');
+
+        $product->save();
+        return $product;
+    }
+
+	/**
+	public function GetProductsByName($name)
+	{
+		$resultarray = DB::table('products')->select('productname', 'sellingprice', 'serialnumber', 'batchnumber')->where('productname','=',$name)->get();
+		$result = new Eloquent\Collection($resultarray);
+		return $result;
+	}**/
+} 
