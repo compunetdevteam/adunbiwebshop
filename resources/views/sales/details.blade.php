@@ -1,19 +1,13 @@
-@if(Sentinel::check())
-    $user = Sentinel::getUser();
-    @if($user->permissions === 'admin')
-        @extends('Centaur::dashlayout')
-   @else
-        @extends('Centaur::userlayout')
-@endif
-
+@extends('Centaur::dashlayout')
 @section('content')
 
-<ul>
-    @foreach($sale as $s)
-        <li>{{ $s->productname }}</li>
-        <li>{{ $s->productdescription }}</li>
-        <li>{{ $s->customername  }}</li>
-        <li>{{ $s->total }}</li>
-        <li>Click <a href="action({{ $s->id }}">here</a> to Edit</li>
-    @endforeach
-</ul>
+    <ul>
+        @foreach($getsale as $sale)
+            <li><b>Product's Name :</b>{{ $sale->productname }}</li>
+            <li><b>Customer's Name :</b>{{ $sale->customername  }}</li>
+            <li><b>Total Paid  :</b>{{ $sale->total }}</li>
+            <li>Click <a href="action({{ $sale->id }}">here</a> to Edit</li>
+        @endforeach
+    </ul>
+
+@endsection

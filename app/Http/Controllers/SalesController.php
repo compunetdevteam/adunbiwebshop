@@ -7,12 +7,13 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
     public function index()
     {
-        $sales = Sale::with('products')->paginate(5);
+        $sales = Sale::orderby('created_at','asc')->paginate(15);
         return view('sales.index', compact('sales'));
     }
 
@@ -56,9 +57,17 @@ class SalesController extends Controller
         }
     }
 
+    /**
+     * @param Sale $sale
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function details(Sale $sale)
     {
-        return view('sales.details', compact('sale'));
+        $getsale = DB::table('sales')->join('products','sales.id','=','products.sale_id')
+            ->select('products.productname','customername',
+                'customeraddress','total','sales.id')->where('sales.id',$sale->id)->get();
+        return view('sales.details', compact('getsale'));
+        //dd($getsale);
     }
 
     public function edit(Request $request)
