@@ -2,14 +2,18 @@
 @extends('Centaur::dashlayout')
 @section('content')
 
-<ul>
-    @foreach($product as $p)
-        <li>{{ $p->productname }}</li>
-        <li>{{ $p->dateofpurchase }}</li>
-        <li>{{ $p->batchnumber }}</li>
-        <li>{{ $p->serialnumber}}</li>
-        <li>{{ $p->sellingprice }}</li>
-        <li>{{ $p->description }}</li>
-        <li>Click <a href="action({{ $p->id }}">here</a> to Edit</li>
-    @endforeach
-</ul>
+<div class="col-md-7">
+    <h2>Product Details</h2>
+    <ul>
+        @foreach($products as $product)
+            <li><b>Product Name :</b>{{ $product->productname }}</li>
+            <li><b>Date Of Purchase :</b>{{ $product->dateofpurchase }}</li>
+            <li><b>Batch Number :</b>{{ $product->batchnumber }}</li>
+            <li><b>Serial Number :</b>{{ $product->serialnumber}}</li>
+            <li><b>Price :</b>{{ $product->sellingprice }}</li>
+            <li><b>Description of Product :</b>{{ $product->description }}</li>
+            <li>Click <a href="products/edit/{{$product->id}}">here</a> to Edit</li>
+        @endforeach
+    </ul>
+</div>
+@endsection

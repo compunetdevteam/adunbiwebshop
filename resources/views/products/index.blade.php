@@ -6,8 +6,9 @@
 			@foreach($products as $product)
 			
 				<tr>
-				<td>{{$product->productname}}</td> 
+				<td>{{$product->productname}} : <a href="products/details/{{$product->id}}">details</a></td> 
 				<td>{{$product->sellingprice}}</td>
+					
 				</tr>
 				
 			@endforeach

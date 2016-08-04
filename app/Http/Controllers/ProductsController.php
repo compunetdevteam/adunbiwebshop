@@ -16,6 +16,66 @@ class ProductsController extends Controller
 		$products = $this->ListProducts();
 		return view('products.index',compact('products'));		
 	}
+
+    public function details($id)
+    {
+        $products = Product::where('id',$id)->get();
+        //dd($product);
+        return view('products.details',compact('products'));
+	}
+
+    /**
+     * [createproduct description]
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function create()
+    {
+        $result = DB::table('stocks')->join('categories','stocks.id','=','categories.stock_id')
+            ->select('categories.name','stock_id')->pluck('name','stock_id');
+        $stocks = new Collection($result);
+        $suppliers = Supplier::lists('suppliername','id');
+        return view ('products.newproductform', compact('suppliers','stocks'));
+    }
+
+    public function newproductform(Request $request)
+    {
+        $this->validate($request, [
+            'productname' => 'required',
+            'dateofpurchase' => 'required',
+            'batchnumber' => 'required',
+            'serialnumber' => 'required',
+            'costprice' => 'numeric',
+            'sellingprice' => 'numeric',
+            'description' =>'',
+            'weight' =>'numeric',
+            'Supplier' => 'numeric',
+            'stock' => 'numeric'
+        ]);
+        $product = $this->SaveProducts($request);
+        if($product)
+        {
+            return redirect()->action('ProductsController@index');
+        }
+    }
+
+    public function edit(Product $product)
+    {
+        return view('products.edit', compact('product'));
+    }
+    
+    
+    
+    
+    
+    /**
+     * [search description]
+     * @param  display the result of the search
+     * @return product search result
+     */
+    public function search($results = [])
+    {
+        return view('products.searchproducts',compact('results'));
+    }
 	
 	/**
 	 * [doSearch description]
@@ -27,15 +87,6 @@ class ProductsController extends Controller
 		$this->validate($request, ['name'=> 'required|min:3|alpha_dash']);
 		$results = $this->productsearch($request);
 		return view('products.productresult', compact('results'));
-	}
-	/**
-	 * [search description]
-	 * @param  display the result of the search
-	 * @return product search result
-	 */
-	public function search($results = [])
-	{
-		return view('products.searchproducts',compact('results'));
 	}
 
 	/**
@@ -50,39 +101,6 @@ class ProductsController extends Controller
     	return $results;
     }
 
-	/**
-	 * [createproduct description]
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-    public function create()
-    {
-    	$result = DB::table('stocks')->join('categories','stocks.id','=','categories.stock_id')
-									 ->select('categories.name','stock_id')->pluck('name','stock_id');
-        $stocks = new Collection($result);
-    	$suppliers = Supplier::lists('suppliername','id');
-    	return view ('products.newproductform', compact('suppliers','stocks'));
-    }
-		
-	public function newproductform(Request $request)
-	{
-		$this->validate($request, [
-			'productname' => 'required',
-			'dateofpurchase' => 'required',
-			'batchnumber' => 'required',
-			'serialnumber' => 'required',
-			'costprice' => 'numeric',
-			'sellingprice' => 'numeric',
-			'description' =>'',
-			'weight' =>'numeric',
-			'Supplier' => 'numeric',
-			'stock' => 'numeric'
-		]);
-        $product = $this->SaveProducts($request);
-		if($product)
-        {
-            return redirect()->action('ProductsController@index');
-        }
-	}
 
 	/**
 	 * [delete products]

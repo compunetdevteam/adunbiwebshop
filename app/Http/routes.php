@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::get('products','ProductsController@index');
 Route::get('products/search','ProductsController@search');
 Route::get('products/doSearch','ProductsController@doSearch');
-Route::get('products/details/{products}','ProductsController@index');
+Route::get('products/details/{id}','ProductsController@details');
 Route::get('products/create','ProductsController@create');
 Route::post('products/save', 'ProductsController@newproductform');
 
