@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Business\DiscountLogic;
 use App\User;
 use App\Sale;
 use App\Product;
@@ -103,7 +104,27 @@ class SalesController extends Controller
         }
         return redirect()->action('SalesController', 'index');
     }
+
+
+    public function showDiscount(Product $product)
+    {
+        return view('sales/discountpage', compact('product'));
+    }
     
+    public function AddDiscount($discountvalue, Product $product)
+    {
+        $logic = new DiscountLogic();
+        $discount = $logic->SetProductPriceDiscount($discountvalue, $product);
+        if(gettype($discount) !== 'double' || gettype($discount) !== 'integer')
+        {
+            //send user to a friendly error page
+            return false;
+        }
+        else
+        {
+            return $discount;
+        }
+    }
     
     
     /**
