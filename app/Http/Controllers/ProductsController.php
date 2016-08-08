@@ -17,6 +17,7 @@ class ProductsController extends Controller
 		return view('products.index',compact('products'));		
 	}
 
+
     public function details($id)
     {
         $products = Product::where('id',$id)->get();
@@ -62,11 +63,7 @@ class ProductsController extends Controller
     {
         return view('products.edit', compact('product'));
     }
-    
-    
-    
-    
-    
+
     /**
      * [search description]
      * @param  display the result of the search
@@ -76,7 +73,7 @@ class ProductsController extends Controller
     {
         return view('products.searchproducts',compact('results'));
     }
-	
+
 	/**
 	 * [doSearch description]
 	 * @param  Request $request [description]
@@ -96,11 +93,9 @@ class ProductsController extends Controller
      */
     public function productsearch(Request $request)
     {
-    	//$results = Product::where('productname','like', $request->input('name').'%')->get();
-    	$results = Product::find();
-    	return $results;
+    	$results = Product::where('productname','like',$request->input('name').'%')->get();
+    	return $results;//$name;
     }
-
 
 	/**
 	 * [delete products]

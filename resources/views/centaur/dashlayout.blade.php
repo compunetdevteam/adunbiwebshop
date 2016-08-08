@@ -18,6 +18,8 @@
 
     <!-- Custom Fonts -->
     <link href="{{url('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -192,6 +194,7 @@
                             <li>
                                 <a href="products">View Products</a>
                             </li>
+                            <li><a href="products/edit">Update Product</a></li>
                          </ul>
 
                     </li>
@@ -202,7 +205,7 @@
                                 <a href="sales">View Sales</a>
                             </li>
                             <li>
-                                <a href="salessum">Sales Summary</a>
+                                <a href="sales/create">Make A Sale</a>
                             </li>
 
                             <li>
@@ -256,15 +259,17 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{{url('js/jquery.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{url('js/bootstrap.min.js')}}"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
+    <script src="{{url('js/plugins/morris/raphael.min.js')}}"></script>
+    <script src="{{url('js/plugins/morris/morris.min.js')}}"></script>
+    <script src="{{url('js/plugins/morris/morris-data.js')}}"></script>
 
 </body>
 </html>

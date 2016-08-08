@@ -8,7 +8,7 @@
                 <p>Product Bought: <b>{{ $sale->products->pluck('productname') }}</b></p>
                 <p>Customer Name: <b>{{ $sale->customername }}</b></p>
                 <p>Product Price: <b>=N={{ $sale->total }}</b></p>
-                <p><a href="sales/details/{{ $sale->id }}">details</a></p>
+                <p><a href="sales/{{ $sale->id }}">details</a></p>
                 <hr>
 			@endforeach
 		</div>

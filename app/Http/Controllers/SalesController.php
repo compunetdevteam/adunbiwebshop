@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Sale;
+use App\Product;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 
@@ -19,8 +21,10 @@ class SalesController extends Controller
 
     public function createSale()
     {
-        $users = User::lists('name','id');
-        return view('sales.makesale',compact('users'));
+        $products = Product::pluck('productname','id');
+//        dd($products);
+        $users = User::lists('email','id');
+        return view('sales.makesale',compact('users','products'));
     }
 
     /**
