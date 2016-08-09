@@ -37,8 +37,9 @@ Route::get('categories', 'CategoriesController@index');
 Route::get('categories/search','CategoriesController@search');
 Route::post('categories/doSearch', 'CategoriesController@doSearch');
 Route::get('Categories','CategoriesController@searchProductByCategory');
-Route::post('Categories','CategoriesController@viewProductByCategory');
-Route::get('categories/createcategory','CategoriesController@createcategory');
+Route::post('categories/save','CategoriesController@save');
+Route::get('categories/createcategory','CategoriesController@create');
+
 
 ///Routes for SalesController and Sales Section of the Application////////////////////////////
 Route::get('sales', 'SalesController@index');
@@ -58,13 +59,13 @@ Route::get('suppliers','SuppliersController@index');
 Route::get('suppliers/createsupplier','SuppliersController@displayCreatePage');
 Route::post('suppliers/saveSupplier','SuppliersController@saveSupplier');
 
-Route::get('supplier/showupdatepage/{id}', 'SuppliersController@showupdatepage');
-Route::post('suppliers/UpdateSupplier/{id}', 'SuppliersController@UpdateSupplier');
-Route::get('suppliers/DeleteSupplier', 'SuppliersController@DeleteSupplier');
+Route::get('suppliers/{supplier}', 'SuppliersController@showupdatepage');
+Route::patch('suppliers/UpdateSupplier/{supplier}', 'SuppliersController@UpdateSupplier');
+Route::get('suppliers/delete/{id}', 'SuppliersController@delete');
 ///////////////////////////////////////////////////////////
 
 
-// Authorization
+// Authorizations
 Route::get('/login', ['as' => 'auth.login.form', 'uses' => 'Auth\SessionController@getLogin']);
 Route::post('/login', ['as' => 'auth.login.attempt', 'uses' => 'Auth\SessionController@postLogin']);
 Route::get('/logout', ['as' => 'auth.logout', 'uses' => 'Auth\SessionController@getLogout']);

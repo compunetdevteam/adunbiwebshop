@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 use App\Category;																																																																																																										
 
 use Illuminate\Http\Request;
-
+use DB;
+use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests;
 
 class CategoriesController extends Controller
@@ -41,10 +42,33 @@ class CategoriesController extends Controller
 /**
  * method to display the the create category page
  */
-	public function createcategory()
+	public function create()
 	{
-		
-		return view('categories.createcategory');
+		$result = DB::table('stocks')->join('categories','stocks.id','=','categories.stock_id')
+			->select('categories.name','stock_id')->pluck('name','stock_id');
+		$stocks = new Collection($result);
+		return view('categories.createcategory',compact('stocks'));
+	}
+
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function save(Request $request)
+	{
+		dd($request);
+		$this->validate([
+			'name'=>'requird',
+			'description'=>'required',
+		]);
+		$create = new Category;
+
+		$create->name = $request->input('name');
+		$create->description = $request->input('description');
+		$create->stock_id = $request->input('stockID');
+		dd($create);
+		$create->save();
+		return redirect()->action('CategoriesController@index');
 	}
 
 	/*//////////////////////////////////////////////////////////////////////
@@ -78,7 +102,7 @@ class CategoriesController extends Controller
 
     public function catsearch(Request $request)
     {
-    	$results = Category::where('name', 'like', $request->input('name').'%')->get();
+    	$results = Category::where('name', 'like', $request->input('name').'%')->pluck('name');
     	return $results;
     }
 /*

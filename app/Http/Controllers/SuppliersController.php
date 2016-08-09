@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Supplier;
 use App\Http\Requests;
+use Session;
 
 class SuppliersController extends Controller
 {
@@ -32,28 +33,40 @@ class SuppliersController extends Controller
       $supplier->suppliername = $request->input('name');
       $supplier->supplieraddress = $request->input('address');
       $supplier->save();
+      return redirect()->back();
    }
 
 
 //method to only display the update page
-   public function showupdatepage($id)
+   public function showupdatepage(Supplier $supplier)
    {
-     // dd('this is my update page with an ID of :',$id);
-       $updatepage =  Supplier::find($id)->get();
-      return view('suppliers.showupdatepage', compact('updatepage'));
+      $updated = Supplier::where('id','=',$supplier->id)->get();
+
+     //dd($updatepage);
+      return view('suppliers.showupdatepage', compact('updated'));
    }
    
-   public function UpdateSupplier(Request $request,$id)
+   public function UpdateSupplier(Request $request, Supplier $supplier)
    {
-	  $allinput = $request->all();
+      dd('hits');
       $this->validate($request,[
          'suppliername',
          'supplieraddress',
       ]);
-
-      $updatesupplier = $this->UpdateASupplier($allinput);
+       dd($supplier);
+      $updatesupplier = Supplier::
+      where('id','=',$request->id)->update(['suppliername'=>$request->input('name'),
+          'supplieraddress'=>$request->input('supplieraddress')]);
       dd($updatesupplier);
-      return redirect()->action('SuppliersController@details');
+
+   }
+
+   public function delete($id)
+   {
+      $deleteSupplier = Supplier::where('id','=',$id)->delete($id);
+     // $deleteSupplier->delete();
+     // dd($deleteSupplier);
+         return redirect()->action('SuppliersController@index');
    }
 
 
