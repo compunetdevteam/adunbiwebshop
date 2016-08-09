@@ -1,5 +1,7 @@
 @extends('Centaur::dashlayout')
-
+@section('sidebar')
+    @include('centaur.adminside')
+@endsection
 @section('content')
 	<div id="container">
 		<div class="row">
