@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\DB;
 class SalesController extends Controller
 {
     private $discount;
-    public function __construct(DiscountLogic $logic)
+    private $authmgr;
+    public function __construct(DiscountLogic $logic, AuthManager $auth)
     {
         $this->discount = $logic;
+        $this->authmgr = $auth;
     }
 
     public function index()
@@ -29,8 +31,8 @@ class SalesController extends Controller
     public function createSale()
     {
         $products = Product::pluck('productname','id');
-//        dd($products);
         $users = User::lists('email','id');
+        $loggedinuser = $this->authmgr->findUser
         return view('sales.makesale',compact('users','products'));
     }
 
