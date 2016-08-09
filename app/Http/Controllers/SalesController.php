@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
+    private $discount;
+    public function __construct(DiscountLogic $logic)
+    {
+        $this->discount = $logic;
+    }
+
     public function index()
     {
         $sales = Sale::orderby('created_at','asc')->paginate(15);
@@ -113,8 +119,7 @@ class SalesController extends Controller
     
     public function AddDiscount($discountvalue, Product $product)
     {
-        $logic = new DiscountLogic();
-        $discount = $logic->SetProductPriceDiscount($discountvalue, $product);
+        $discount = $this->discount->SetProductPriceDiscount($discountvalue, $product);
         if(gettype($discount) !== 'double' || gettype($discount) !== 'integer')
         {
             //send user to a friendly error page
@@ -137,7 +142,6 @@ class SalesController extends Controller
      */
     public function MakeASale($salearray = array(), $userid)
     {
-        //$result = Sale::create($salearray);
         $sale = new Sale;
         $result = $sale->create($salearray);
         $sale->setUserId($userid);

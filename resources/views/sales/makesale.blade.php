@@ -1,10 +1,12 @@
 @extends('Centaur::dashlayout')
-
+@section('sidebar')
+    @include('centaur.adminside')
+@endsection
 @section('content')
 
     <div class="col-md-pull-9">
 
-        <form action="{{url('sale/make')}}" method="post" role="form" class="form-horizontal">
+        <form action="{{url('sale/make')}}" method="post" role="form" class="form-horizontal" id="saleform">
             <div class="form-group"><b>Customer Name :</b>
             <input type="text" placeholder="CustomerName" class="form-control">
             </div>
@@ -27,11 +29,12 @@
         </form>
 
     </div>
-    <script type="application/javascript">
-        $(document).ready(function(){
-            $('#prodbtn').click(function(){
-                alert('Hi from button');
-            })
-        })
-    </script>
+
+@endsection
+@section('js')
+    $('#prodbtn').click(function(){
+        $("<div class="form-group"><b>Select a Product  :</b>
+        {!! Form::select('Products', $products,'', ['class'=>'form-control','id'=>'productdd']) !!}
+    </div>").after('#prodbtn');
+    })
 @endsection
