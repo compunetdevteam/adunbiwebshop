@@ -44,10 +44,7 @@ class CategoriesController extends Controller
  */
 	public function create()
 	{
-		$result = DB::table('stocks')->join('categories','stocks.id','=','categories.stock_id')
-			->select('categories.name','stock_id')->pluck('name','stock_id');
-		$stocks = new Collection($result);
-		return view('categories.createcategory',compact('stocks'));
+		return view('categories.createpage');
 	}
 
 	/**
@@ -65,10 +62,19 @@ class CategoriesController extends Controller
 
 		$create->name = $request->input('name');
 		$create->description = $request->input('description');
-		$create->stock_id = $request->input('stockID');
 		dd($create);
 		$create->save();
 		return redirect()->action('CategoriesController@index');
+	}
+
+	public function update()
+	{
+		echo 'this is the update method';
+	}
+
+	public function delete()
+	{
+		echo 'this is the delete method';
 	}
 
 	/*//////////////////////////////////////////////////////////////////////

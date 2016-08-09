@@ -1,4 +1,9 @@
 @extends('Centaur::dashlayout')
+@section('sidebar')
+ @include('centaur.adminside')
+@endsection
+
+
 @section('content')
 <h2>List of all Suppliers</h2>
 <ul>

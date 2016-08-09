@@ -1,4 +1,7 @@
 @extends('Centaur::dashlayout')
+@section('sidebar')
+	@include('centaur.adminside')
+@endsection
 @section('content')
 
 	{!!Form::open(array('url' => 'suppliers/saveSupplier', 'method' => 'post')) !!}
