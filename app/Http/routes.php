@@ -36,11 +36,13 @@ Route::post('productbycategoryResult','CategoriesController@viewProductByCategor
 Route::get('createcategory','CategoriesController@createcategory');
 /////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('categories', 'CategoriesController@index');
+Route::get('categories/createpage','CategoriesController@create');
+Route::post('categories/save','CategoriesController@save');
 Route::get('categories/search','CategoriesController@search');
 Route::post('categories/doSearch', 'CategoriesController@doSearch');
-Route::get('Categories','CategoriesController@searchProductByCategory');
-Route::post('categories/save','CategoriesController@save');
-Route::get('categories/createcategory','CategoriesController@create');
+Route::get('categories/delete','CategoriesController@delete');
+
+
 
 
 ///Routes for SalesController and Sales Section of the Application////////////////////////////

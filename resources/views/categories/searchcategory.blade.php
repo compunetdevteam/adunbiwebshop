@@ -1,4 +1,7 @@
 @extends('Centaur::dashlayout')
+@section('sidebar')
+	@include('centaur.adminside')
+@endsection
 
 @section('content')
 <h1>Search For the Categories </h1>
