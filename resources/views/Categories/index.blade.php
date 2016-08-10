@@ -5,12 +5,16 @@
 @section('content')
 
     <h1>List of all Categories</h1>
-    <table border="2">
+
 
         @foreach($category as $cat)
-            <th><b>Category Name:</b> {{$cat['name']}} </th>
-            <tr> <td><b>Categories Description:</b> {{$cat['description']}}</td></tr>
+           <b>Category Name:</b> {{$cat['name']}}
+            <b>Categories Description:</b> {{$cat['description']}}<br/>
+           <a href="{{$cat->id}}">Update</a>
+           <a href="{{$cate->id}}">Delete</a>
+                   <hr/>
             @endforeach
             </ul>
-    </table>
+
+
 @endsection
