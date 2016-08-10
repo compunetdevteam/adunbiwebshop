@@ -8,10 +8,10 @@
 
 
         @foreach($category as $cat)
-           <b>Category Name:</b> {{$cat['name']}}
-            <b>Categories Description:</b> {{$cat['description']}}<br/>
+           <b>Category Name:</b> {{$cat->name}}
+            <b>Categories Description:</b> {{$cat->description}}<br/>
            <a href="{{$cat->id}}">Update</a>
-           <a href="{{$cate->id}}">Delete</a>
+           <a href="{{$cat->id}}">Delete</a>
                    <hr/>
             @endforeach
             </ul>
