@@ -7,6 +7,7 @@ use App\User;
 use App\Sale;
 use App\Product;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Centaur\AuthManager;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -32,8 +33,9 @@ class SalesController extends Controller
     {
         $products = Product::pluck('productname','id');
         $users = User::lists('email','id');
-        $loggedinuser = $this->authmgr->findUser
-        return view('sales.makesale',compact('users','products'));
+        $loggedinuser = Sentinel::getUser();
+        dd($loggedinuser);
+//        return view('sales.makesale',compact('users','products','loggedinuser'));
     }
 
     /**
@@ -56,7 +58,7 @@ class SalesController extends Controller
             'subtotal'    => 'numeric|required|max:9',
             'total'       => 'numeric|required|max:9'
         ]);
-        $loggedinuser = Sentinel::check(); //returns false if there is no user loggedin
+        $loggedinuser = Sentinel::getUser(); //returns false if there is no user loggedin
         if(!$loggedinuser)
         {
             //return exception AnonymousUserException
