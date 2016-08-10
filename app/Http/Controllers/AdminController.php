@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Business\DbUtility;
 use App\Category;
 use App\Product;
 use App\Sale;
 use App\Stock;
 use App\Supplier;
+use DB;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -14,19 +16,14 @@ use App\Http\Requests;
 
 class AdminController extends Controller
 {
-    private $products;
-    private $suppliers;
-    private $sales;
-    private $categories;
-    private $stocks;
-
-    public function __construct(Product $product, Category $category, Sale $sale, Stock $stock, Supplier $supplier)
+    private $dbu;
+    /**
+     * AdminController constructor.
+     * @param DbUtility $dbutil
+     */
+    public function __construct(DbUtility $dbutil)
     {
-        $this->categories = $category;
-        $this->products = $product;
-        $this->sales = $sale;
-        $this->stocks = $stock;
-        $this->suppliers = $supplier;
+        $this->dbu = $dbutil;
     }
 
     /**
@@ -36,15 +33,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $products = $this->products->with('stock','supplier','categories')->pluck('productname','sellingprice','serialnumber')->paginate(15);
-        $suppliers = $this->suppliers->with('products')->pluck('suppliername')->paginate(15);
-        $stocks = new Collection(DB::table('stocks')->join('categories','stocks.id','categories.stock_id')
-                                    ->join('products','stock.id','products.stock_id')
-                                    ->lists('categories.name','stocks.dateaddedinstock','stocks.numberofproductsinstock','products.productname')
-                                    ->get());
-        $sales = new Collection(DB::table('sales')->join('products','sales.id','products.sales_id')
-                                                  ->lists('sales.*','products.productname')
-                                                  ->get());
+        $products = $this->dbu->AdminDbProducts();
+        $suppliers = $this->dbu->AdminDbSuppliers();
+        $stocks = $this->dbu->AdminDbStocks();
+        $sales = $this->dbu->AdminDbSales();
         return view('centaur.admindash',compact('products','sales','stocks','suppliers'));
     }
 }

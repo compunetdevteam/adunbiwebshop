@@ -1,4 +1,4 @@
-@extends('Centaur::layout')
+@extends('Centaur::dashlayout')
 
 @section('title', 'Login')
 

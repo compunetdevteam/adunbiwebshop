@@ -1,6 +1,6 @@
 @extends('Centaur::dashlayout')
 @section('sidebar')
-    @include('adminside')
+    @include('centaur.adminside')
 @endsection
 @section('title','Administrator Dashboard')
 
@@ -35,12 +35,12 @@
                             <i class="fa fa-shopping-cart fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">26</div>
+                            <div class="huge">{{$sales->count()}}</div>
                             <div>Daily Sells [JOS]</div>
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="{{url('sales')}}">
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -79,7 +79,7 @@
                             <i class="fa fa-user fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">124</div>
+                            <div class="huge">{{App\Sale::count('customername')}}</div>
                             <div>Customers [JOS]</div>
                         </div>
                     </div>

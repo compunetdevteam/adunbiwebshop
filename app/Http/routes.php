@@ -71,8 +71,7 @@ Route::get('suppliers/delete/{id}', 'SuppliersController@delete');
 
 // Authorizations
 Route::get('/login', ['as' => 'auth.login.form', 'uses' => 'Auth\SessionController@getLogin']);
-//Route::post('/login', ['as' => 'auth.login.attempt', 'uses' => 'Auth\SessionController@postLogin']);
-Route::post('dologin', 'SessionController@postLogin');
+Route::post('/dologin', ['as' => 'auth.login.attempt', 'uses' => 'Auth\SessionController@postLogin']);
 Route::get('/logout', ['as' => 'auth.logout', 'uses' => 'Auth\SessionController@getLogout']);
 
 // Registration
@@ -99,28 +98,6 @@ Route::resource('roles', 'RoleController');
 // Dashboard
 //Route::get('dashboard', ['as' => 'dashboard', 'uses' => function() {
 Route::get('/', ['as' => 'dashboard', 'uses' => 'AdminController@index']);
-
-
-//Admin Interface
-Route::get('admindashboard', function () {
-    return view('adminUI.adminDashboard');
-});
-
-Route::get('viewstaff', function () {
-    return view('adminUI.viewstaff');
-});
-
-Route::get('createstaff', function () {
-    return view('adminUI.createstaff');
-});
-
-Route::get('viewcustomer', function () {
-    return view('adminUI.viewcustomer');
-});
-
-Route::get('createpro', function () {
-    return view('adminUI.createpro');
-});
 
 
 

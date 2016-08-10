@@ -1,7 +1,8 @@
 @extends('Centaur::dashlayout')
-	@section('content')
-		<center>
-                        <form role="form" action="{{url('dologin')}}" method="post">
+
+@section('content')
+		<div class="row">
+                        <form role="form" action="{{url('dologin')}}" method="post" class="form-horizontal">
 
                             <div class="form-group input-group col-md-5">
                                 <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
@@ -18,7 +19,7 @@
                             
                              <button type="submit" class="btn btn-primary">Submit</button>
                          </form>
-                        </center>
+        </div>
                     
 	@endsection
 
