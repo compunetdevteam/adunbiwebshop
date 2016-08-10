@@ -18,6 +18,8 @@ Route::get('/', function () {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////Routes for the AdminController////////////////////////////////////////////////////////////////
+Route::get('admin','AdminController@index');
 ////Routes for the Products Controller and Products Section of the application////////////////////
 Route::get('products','ProductsController@index');
 Route::get('products/search','ProductsController@search');
@@ -67,7 +69,8 @@ Route::get('suppliers/delete/{id}', 'SuppliersController@delete');
 
 // Authorizations
 Route::get('/login', ['as' => 'auth.login.form', 'uses' => 'Auth\SessionController@getLogin']);
-Route::post('/login', ['as' => 'auth.login.attempt', 'uses' => 'Auth\SessionController@postLogin']);
+//Route::post('/login', ['as' => 'auth.login.attempt', 'uses' => 'Auth\SessionController@postLogin']);
+Route::post('dologin', 'SessionController@postLogin');
 Route::get('/logout', ['as' => 'auth.logout', 'uses' => 'Auth\SessionController@getLogout']);
 
 // Registration
@@ -93,10 +96,7 @@ Route::resource('roles', 'RoleController');
 
 // Dashboard
 //Route::get('dashboard', ['as' => 'dashboard', 'uses' => function() {
-Route::get('/', ['as' => 'dashboard', 'uses' => function() {
-    //return view('centaur.dashboard');
-    return view('centaur.admindash');
-}]);
+Route::get('/', ['as' => 'dashboard', 'uses' => 'AdminController@index']);
 
 
 //Admin Interface

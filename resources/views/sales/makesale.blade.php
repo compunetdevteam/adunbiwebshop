@@ -20,21 +20,18 @@
                 {!! Form::email('emailaddress','', ['placeholder'=>'user@user.com', 'class'=>'form-control']) !!}
             </div>
             <div class="form-group"><b>Select a Product  :</b>
-                {!! Form::select('Products', (['0', 'Select a Product'] + $products),'', ['class'=>'form-control','id'=>'productdd']) !!}
+                {!! Form::select('Products', $products,'', ['class'=>'form-control','id'=>'productdd']) !!}
             </div>
             <a href="#" class="btn btn-primary" id="prodbtn">Add Another Product</a>
             <div class="form-group"><b>Select User :</b>
-            {!! Form::select('Users',(['0', 'Select a Product'] + $users),'', ['class'=>'form-control']) !!}
+            {!! Form::select('Users',$users,'', ['class'=>'form-control']) !!}
             </div>
         </form>
-
+        {{$loggedinuser}}
     </div>
 
 @endsection
 @section('js')
     $('#prodbtn').click(function(){
-        $("<div class="form-group"><b>Select a Product  :</b>
-        {!! Form::select('Products',(['0', 'Select a Product'] + $products),'', ['class'=>'form-control','id'=>'productdd']) !!}
-    </div>").after('#prodbtn');
     })
 @endsection

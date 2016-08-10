@@ -1,7 +1,7 @@
-@extends('Centaur::layout')
+@extends('Centaur::dashlayout')
 	@section('content')
 		<center>
-                        <form role="form">
+                        <form role="form" action="{{url('dologin')}}" method="post">
 
                             <div class="form-group input-group col-md-5">
                                 <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>

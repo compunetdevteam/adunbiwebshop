@@ -1,5 +1,7 @@
 @extends('Centaur::dashlayout')
-
+@section('sidebar')
+    @include('adminside')
+@endsection
 @section('title','Administrator Dashboard')
 
 @section('content')
