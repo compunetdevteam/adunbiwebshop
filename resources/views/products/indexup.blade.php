@@ -1,11 +1,11 @@
-@extends('Centaur::layout')
+@extends('Centaur::dashlayout')
 @section('sidebar')
 	@include('centaur.adminside')
 @endsection
 @section('content')
 <h1> this is the product list</h1>
-		<a href="{{action('ProductsController@indexup')}}" class="btn btn-primary">Show Updated Products</a>
-	
+
+	<p><a href="{{action('ProductsController@index')}}" class="btn btn-primary">Newly Created Products</a></p>
 			<table border="1" width="20%">
 			@foreach($products as $product)
 			

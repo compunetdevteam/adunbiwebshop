@@ -14,9 +14,15 @@ class ProductsController extends Controller
 	public function index()
 	{
 		$products = $this->ListProducts();
+        
 		return view('products.index',compact('products'));		
 	}
 
+    public function indexup()
+    {
+        $products = $this->ListProducts_UpdatedAt();
+        return view('products.indexup',compact('products'));
+    }
 
     public function details($id)
     {
@@ -96,6 +102,19 @@ class ProductsController extends Controller
     	$results = Product::where('productname','like',$request->input('name').'%')->get();
     	return $results;//$name;
     }
+    /**
+     * [search product by dateofpurchase ]
+     * @param  Request begin and end date
+     * @return [product purchase within the specified dates]
+     */
+    public function searchform(Request $request)
+    {
+        return view('products.searchform');
+    }
+    public function searchbydate($datebegin, $dateend)
+    {
+        $dateofpurchase = Product::wherebetween('dateofpurchase',['datebegin','dateend'])->get();
+    }
 
 	/**
 	 * [delete products]
@@ -124,8 +143,43 @@ class ProductsController extends Controller
 	 */
 	public function ListProducts()
 	{
-		return Product::orderby('created_at')->paginate(15);
+		return Product::orderby('created_at','desc')->paginate(15);
 	}
+
+    public function ListProducts_UpdatedAt()
+    {
+        return Product::orderby('updated_at','desc')->paginate(15);
+    }
+
+    public function showupdatepage($id )
+    {
+       $result = Product::find($id);
+      return view('products.showupdatepage', compact('result'));
+    }
+
+    public function updateproduct(Request $request)
+    {
+  
+      $this->validate($request,[
+         'productname',
+         'description',
+      ]);
+      $newproduct = array('id'=> $request->input('id'),
+            'productname' => $request->input('productname'),
+            'dateofpurchase' => $request->input('dateofpurchase'),
+            'batchnumber' => $request->input('batchnumber'),
+            'serialnumber' => $request->input('serialnumber'),
+            'sellingprice' => $request->input('sellingprice'),
+            'costprice' => $request->input('costprice'),
+            'description' => $request->input('description'),
+            'weight' => $request->input('weight')
+        );
+     
+      $updateproduct = Product::
+      where('id','=',$request->input('id'))->update($newproduct);
+     return redirect()->action('ProductsController@index');
+
+    }
 
     public function SaveProducts(Request $request)
     {
