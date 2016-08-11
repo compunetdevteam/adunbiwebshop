@@ -46,18 +46,14 @@ class SuppliersController extends Controller
       return view('suppliers.showupdatepage', compact('updated'));
    }
    
-   public function UpdateSupplier(Request $request, Supplier $supplier)
+   public function UpdateSupplier(Request $request)
    {
-      dd('hits');
-      $this->validate($request,[
-         'suppliername',
-         'supplieraddress',
-      ]);
-       dd($supplier);
-      $updatesupplier = Supplier::
-      where('id','=',$request->id)->update(['suppliername'=>$request->input('name'),
-          'supplieraddress'=>$request->input('supplieraddress')]);
-      dd($updatesupplier);
+   
+
+      $updatesupplier = Supplier::where('id','=',$request->input('id'))->update(['suppliername'=>$request->input('name'),
+          'supplieraddress'=>$request->input('address')]);
+      return redirect()->action('SuppliersController@index');
+
 
    }
 

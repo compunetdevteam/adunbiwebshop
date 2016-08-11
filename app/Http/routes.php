@@ -40,7 +40,10 @@ Route::get('categories/createpage','CategoriesController@create');
 Route::post('categories/save','CategoriesController@save');
 Route::get('categories/search','CategoriesController@search');
 Route::post('categories/doSearch', 'CategoriesController@doSearch');
-Route::get('categories/delete','CategoriesController@delete');
+Route::get('categories/delete/{id}','CategoriesController@delete');
+Route::get('categories/{id}','CategoriesController@updatepage');
+Route::get('categories/save/{id}','CategoriesController@save');
+Route::post('categories/update  ','CategoriesController@update');
 
 
 
@@ -60,11 +63,11 @@ Route::get('getstocks', 'StocksController@displaystock');
 
 ///////////////////////Supplier Route//////////////////////////////
 Route::get('suppliers','SuppliersController@index');
-Route::get('suppliers/createsupplier','SuppliersController@displayCreatePage');
+Route::get('suppliers/create','SuppliersController@displayCreatePage');
 Route::post('suppliers/saveSupplier','SuppliersController@saveSupplier');
 
 Route::get('suppliers/{supplier}', 'SuppliersController@showupdatepage');
-Route::patch('suppliers/UpdateSupplier/{supplier}', 'SuppliersController@UpdateSupplier');
+Route::post('suppliers/UpdateSupplier', 'SuppliersController@UpdateSupplier');
 Route::get('suppliers/delete/{id}', 'SuppliersController@delete');
 ///////////////////////////////////////////////////////////
 

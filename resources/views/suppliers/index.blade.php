@@ -10,9 +10,10 @@
 @foreach($allsuppliers as $supplier)
 <li>Supplier Name: {{ $supplier->suppliername  }}</li><br>
  Supplier Address: {{$supplier->supplieraddress}}
-
- <p><a href="suppliers/{{ $supplier->id }}">Update Recored</a></p>
-  <p><a href="suppliers/delete/{{$supplier->id}}">Delete Recorded</a></p>
+<div>
+ <a href="suppliers/{{ $supplier->id }}" class="btn btn-primary">Update </a>
+  <a href="suppliers/delete/{{$supplier->id}}" class="btn btn-primary">Delete</a>
+ </div>
 <hr/>
 @endforeach
 </ul>

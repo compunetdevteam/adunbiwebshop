@@ -8,10 +8,12 @@
 
 
         @foreach($category as $cat)
-           <b>Category Name:</b> {{$cat->name}}
+           <b>Category Name:</b> {{$cat->name}}<br/>
             <b>Categories Description:</b> {{$cat->description}}<br/>
-           <a href="{{$cat->id}}">Update</a>
-           <a href="{{$cat->id}}">Delete</a>
+           <div>
+           <a href="categories/{{$cat->id}}" class="btn btn-primary">Update</a>
+           <a href="categories/delete/{{$cat->id}}" class="btn btn-primary">Delete</a>
+               </div>
                    <hr/>
             @endforeach
             </ul>

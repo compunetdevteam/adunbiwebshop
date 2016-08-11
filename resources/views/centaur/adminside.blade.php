@@ -69,7 +69,7 @@
                     <a href="viewstock">View Stocks</a>
                 </li>
                 <li>
-                    <a href="newarrivals">New Arrivals</a>
+                    <a href="urnewarrivals">New Arrivals</a>
                 </li>
 
             </ul>
@@ -80,7 +80,24 @@
             <a href="javascript:;" data-toggle="collapse" data-target="#demo8"><i class="fa fa-user"></i> Suppliers <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo8" class="collapse">
                 <li>
-                    <a href="viewsupp">View Suppliers</a>
+                    <a href="{{url('suppliers')}}">View Suppliers</a>
+                </li>
+                <li>
+                    <a href="{{url('suppliers/create')}}">Create Suppliers</a>
+                </li>
+
+            </ul>
+        </li>
+
+
+        <li>
+            <a href="javascript:;" data-toggle="collapse" data-target="#demo9"><i class="fa fa-user"></i> Category <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="demo9" class="collapse">
+                <li>
+                    <a href="{{url('categories')}}">View Category</a>
+                </li>
+                <li>
+                    <a href="{{url('categories/createpage')}}">Create categories</a>
                 </li>
 
             </ul>

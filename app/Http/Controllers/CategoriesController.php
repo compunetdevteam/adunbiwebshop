@@ -11,6 +11,7 @@ use App\Http\Requests;
 class CategoriesController extends Controller
 {
     protected $categoryDB;
+
     
     public function __construct (Category $cat)
     {
@@ -67,14 +68,36 @@ class CategoriesController extends Controller
 		return redirect()->action('CategoriesController@index');
 	}
 
-	public function update()
+	public function updatepage(Request $request,$id)
 	{
-		echo 'this is the update method';
+		$result = Category::find($id);
+		//dd($result);
+
+		return view('categories.updatepage', compact('result'));
+		return 	$result;
 	}
 
-	public function delete()
+	public function update( Request $request)
 	{
-		echo 'this is the delete method';
+		
+		//dd($request->input('description'));
+
+
+
+		$update = Category::where('id','=',$request->input('id'))->update(['name'=> $request->input('name'),
+			'description'=>$request->input('description')
+	]);
+		return redirect()->action('CategoriesController@index');
+
+
+	}
+
+	public function delete($id)
+	{
+
+		$deleteCategory = Category::where('id','=',$id)->delete($id);
+		//dd($deleteCategory);
+		return redirect()->action('CategoriesController@index');
 	}
 
 	/*//////////////////////////////////////////////////////////////////////
@@ -95,8 +118,6 @@ class CategoriesController extends Controller
      * show details of a particular category
      * @param $name string name of category
      * @return mixed single Category
-     */
-    public function FindCategoryByName()
     {
 		
     	//$searchresult = $request->input()->where('id')->get();
