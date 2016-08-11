@@ -6,6 +6,11 @@
 
     <h1>List of all Categories</h1>
 
+    {{--this is a session message--}}
+    @if(Session::has('message'))
+        <p class="alert-success">{{Session::get('message')}}</p>
+    @endif
+    {{--end of session message--}}
 
         @foreach($category as $cat)
            <b>Category Name:</b> {{$cat->name}}<br/>

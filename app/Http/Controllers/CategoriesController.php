@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests;
+use Session;
 
 class CategoriesController extends Controller
 {
@@ -74,19 +75,15 @@ class CategoriesController extends Controller
 		//dd($result);
 
 		return view('categories.updatepage', compact('result'));
-		return 	$result;
+		
 	}
 
 	public function update( Request $request)
 	{
-		
-		//dd($request->input('description'));
-
-
-
-		$update = Category::where('id','=',$request->input('id'))->update(['name'=> $request->input('name'),
+        $update = Category::where('id','=',$request->input('id'))->update(['name'=> $request->input('name'),
 			'description'=>$request->input('description')
 	]);
+		Session::flash('message','Updating the record was successful');
 		return redirect()->action('CategoriesController@index');
 
 
@@ -97,6 +94,7 @@ class CategoriesController extends Controller
 
 		$deleteCategory = Category::where('id','=',$id)->delete($id);
 		//dd($deleteCategory);
+		Session::flash('message','Deleting the record was Successful');
 		return redirect()->action('CategoriesController@index');
 	}
 
