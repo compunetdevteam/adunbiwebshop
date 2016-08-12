@@ -4,7 +4,7 @@
 		<h1>Product search page</h1>
 		{!!Form::open(array('url'=> 'products/doSearch','method'=>'get'))!!}
 			{!!Form::label('Search for products')!!}
-				{!!Form::text('name',null)!!}
+				{!!Form::text('name',null,array('class'=>'form-control'))!!}
 			{!!Form::submit('Search for products')!!}
 		{!!Form::close()!!}
 		<div>

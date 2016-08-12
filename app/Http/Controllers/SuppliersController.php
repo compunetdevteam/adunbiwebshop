@@ -52,8 +52,13 @@ class SuppliersController extends Controller
 
       $updatesupplier = Supplier::where('id','=',$request->input('id'))->update(['suppliername'=>$request->input('name'),
           'supplieraddress'=>$request->input('address')]);
+      if($updatesupplier){
+      Session::flash('message', 'Update Was Successfull');
       return redirect()->action('SuppliersController@index');
-
+      }
+      else{
+         Session::flash('message','could not update');
+      }
 
    }
 
@@ -62,6 +67,7 @@ class SuppliersController extends Controller
       $deleteSupplier = Supplier::where('id','=',$id)->delete($id);
      // $deleteSupplier->delete();
      // dd($deleteSupplier);
+      Session::flash('message','Deleting the record was succesful');
          return redirect()->action('SuppliersController@index');
    }
 
