@@ -11,6 +11,7 @@ use App\Http\Requests;
 class AdminController extends Controller
 {
     private $dbu;
+    private $user;
     /**
      * AdminController constructor.
      * @param DbUtility $dbutil
@@ -18,6 +19,7 @@ class AdminController extends Controller
     public function __construct(DbUtility $dbutil)
     {
         $this->dbu = $dbutil;
+        $this->user = Sentinel::check();
         $this->middleware('sentinel.auth');
     }
 
@@ -32,7 +34,7 @@ class AdminController extends Controller
         $suppliers = $this->dbu->AdminDbSuppliers();
         $stocks = $this->dbu->AdminDbStocks();
         $sales = $this->dbu->AdminDbSales();
-        $user = Sentinel::check();
+        $user = $this->user;
         return view('centaur.admindash',compact('products','sales','stocks','suppliers','user'));
     }
 }

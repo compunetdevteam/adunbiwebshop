@@ -1,4 +1,7 @@
-@extends('Centaur::layout')
+@extends('Centaur::dashlayout')
+@section('userinfo')
+	@include('centaur.userdetails')
+@endsection
 @section('sidebar')
 	@include('centaur.adminside')
 @endsection
