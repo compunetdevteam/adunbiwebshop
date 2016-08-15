@@ -11,7 +11,12 @@ use App\Http\Requests;
 
 class ProductsController extends Controller
 {
-	public function index()
+    public function __construct()
+    {
+        $this->middleware('sentinel.auth');
+    }
+
+    public function index()
 	{
 		$products = $this->ListProducts();
         
