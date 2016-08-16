@@ -120,10 +120,9 @@ class SalesController extends Controller
     }
 
 
-    public function showDiscount(Product $product)
+    public function showDiscount()
     {
-        dd('this hits the show discount page');
-        return view('sales.setdiscount', compact('product'));
+        return view('sales.setdiscount');
     }
     
     public function AddDiscount($discountvalue, Product $product)

@@ -54,11 +54,12 @@ Route::post('categories/update  ','CategoriesController@update');
 
 
 ///Routes for SalesController and Sales Section of the Application////////////////////////////
+Route::get('sales/setdiscount','SalesController@showDiscount');
 Route::get('sales', 'SalesController@index');
 Route::get('sales/create', 'SalesController@createSale');
 Route::post('sales/makesale', 'SalesController@makeSale');
 Route::get('sales/{sale}', 'SalesController@details');
-Route::get('sales/setdiscount','SalesController@showDiscount');
+
 
 
 
