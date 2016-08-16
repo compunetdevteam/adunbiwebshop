@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Product;
 use App\Supplier;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -11,11 +12,18 @@ use App\Http\Requests;
 
 class ProductsController extends Controller
 {
-	public function index()
+    private $user;
+    public function __construct()
+    {
+        $this->middleware('sentinel.auth');
+        $this->user = Sentinel::check();
+    }
+
+    public function index()
 	{
 		$products = $this->ListProducts();
-        
-		return view('products.index',compact('products'));		
+        $user = $this->user;
+		return view('products.index',compact('products','user'));
 	}
 
     public function indexup()

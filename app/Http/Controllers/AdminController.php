@@ -3,13 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Business\DbUtility;
-use App\Category;
-use App\Product;
-use App\Sale;
-use App\Stock;
-use App\Supplier;
-use DB;
-use Illuminate\Database\Eloquent\Collection;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,6 +11,7 @@ use App\Http\Requests;
 class AdminController extends Controller
 {
     private $dbu;
+    private $user;
     /**
      * AdminController constructor.
      * @param DbUtility $dbutil
@@ -24,6 +19,8 @@ class AdminController extends Controller
     public function __construct(DbUtility $dbutil)
     {
         $this->dbu = $dbutil;
+        $this->user = Sentinel::check();
+        $this->middleware('sentinel.auth');
     }
 
     /**
@@ -37,6 +34,7 @@ class AdminController extends Controller
         $suppliers = $this->dbu->AdminDbSuppliers();
         $stocks = $this->dbu->AdminDbStocks();
         $sales = $this->dbu->AdminDbSales();
-        return view('centaur.admindash',compact('products','sales','stocks','suppliers'));
+        $user = $this->user;
+        return view('centaur.admindash',compact('products','sales','stocks','suppliers','user'));
     }
 }

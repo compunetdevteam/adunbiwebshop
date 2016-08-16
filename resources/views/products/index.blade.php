@@ -1,13 +1,15 @@
 @extends('Centaur::dashlayout')
-
-	@section('sidebar')
-		@include('centaur.adminside')
-    @endsection
-
+@section('userinfo')
+	@include('centaur.userdetails')
+@endsection
+@section('sidebar')
+	@include('centaur.adminside')
+@endsection
 @section('content')
-
-<div class="panel1">   
-		<h3>  Products List  </h3>	
+	<div class="panel1">
+		<h3>  Products List  </h3>
+		<a href="{{action('ProductsController@indexup')}}" class="btn btn-primary">Show Updated Products</a>
+			@foreach($products as $product)
 			
 			<div class="table">
 			

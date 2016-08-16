@@ -1,6 +1,13 @@
 @extends('Centaur::dashlayout')
+@section('userinfo')
+    @include('centaur.userdetails',$user)
+@endsection
 @section('sidebar')
-    @include('centaur.adminside')
+    @if(Sentinel::getRoleRepository()->findByName('administrator'))
+        @include('centaur.adminside')
+    @else
+        @include('centaur.blank')
+    @endif
 @endsection
 @section('title','Administrator Dashboard')
 

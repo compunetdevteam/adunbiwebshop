@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Stock Homepage</title>
-	<link rel="stylesheet" href="">
-</head>
-<body>
+@extends('Centaur::dashlayout')
+@section('sidebar')
+	@include('centaur.adminside')
+@endsection
+@section('content')
 	<div id="container">
 		<div class="row">
 			<ul>
@@ -15,10 +11,10 @@
 				<li><b>Category Name :</b>{{ $result->categories()->pluck('name') }}</li>
 				<!--<li> <span> <b>Products In Stock</b>  </span> </li> -->
 				<li><b>Product Name :</b>{{ $result->products()->pluck('productname') }}</li>
+				<hr/>
 			@endforeach
 			{{ $results->links() }}
 			</ul>
 		</div>
 	</div>
-</body>
-</html>
+@endsection

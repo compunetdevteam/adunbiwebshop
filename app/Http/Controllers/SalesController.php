@@ -16,26 +16,32 @@ use Illuminate\Support\Facades\DB;
 class SalesController extends Controller
 {
     private $discount;
-    private $authmgr;
-    public function __construct(DiscountLogic $logic, AuthManager $auth)
+    private $user;
+
+    /**
+     * SalesController constructor.
+     * @param DiscountLogic $logic
+     */
+    public function __construct(DiscountLogic $logic)
     {
         $this->discount = $logic;
-        $this->authmgr = $auth;
+        $this->middleware('sentinel.auth');
+        $this->user = Sentinel::check();
     }
 
     public function index()
     {
+        $user = $this->user;
         $sales = Sale::orderby('created_at','asc')->paginate(15);
-        return view('sales.index', compact('sales'));
+        return view('sales.index', compact('sales','user'));
     }
 
     public function createSale()
     {
         $products = Product::pluck('productname','id');
         $users = User::lists('email','id');
-        $loggedinuser = Sentinel::getUser();
-        dd($loggedinuser);
-//        return view('sales.makesale',compact('users','products','loggedinuser'));
+        $user = Sentinel::getUser();
+        return view('sales.makesale',compact('users','products','user'));
     }
 
     /**

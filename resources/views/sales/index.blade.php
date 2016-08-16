@@ -1,5 +1,7 @@
 @extends('Centaur::dashlayout')
-
+@section('userinfo')
+    @include('centaur.userdetails',$user)
+@endsection
 @section('sidebar')
     @include('centaur.adminside')
 @endsection
