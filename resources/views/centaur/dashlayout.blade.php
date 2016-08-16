@@ -131,8 +131,8 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    @yield('userinfo')
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome {{ Sentinel::check()->email }} <b class="caret"></b></a>
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome {{ Sentinel::check() ? Sentinel::check()->email : "Guest"}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
