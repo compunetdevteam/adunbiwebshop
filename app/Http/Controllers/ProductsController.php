@@ -49,7 +49,8 @@ class ProductsController extends Controller
             ->select('categories.name','stock_id')->pluck('name','stock_id');
         $stocks = new Collection($result);
         $suppliers = Supplier::lists('suppliername','id');
-        return view ('products.newproductform', compact('suppliers','stocks'));
+        $user = $this->user;
+        return view ('products.newproductform', compact('suppliers','stocks','user'));
     }
 
     public function newproductform(Request $request)

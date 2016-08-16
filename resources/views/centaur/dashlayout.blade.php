@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"> <img src="{{url('images/Adunbi Logo.png')}}" width="160px" height="105px"/></a>
+                <a class="navbar-brand" href="{{url('/')}}"> <img src="{{url('images/Adunbi Logo.png')}}" width="160px" height="105px"/></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -132,6 +132,7 @@
                 </li>
                 <li class="dropdown">
                     @yield('userinfo')
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome {{ Sentinel::check()->email }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>

@@ -1,7 +1,8 @@
-@extends('Centaur::layout')
-
+@extends('Centaur::dashlayout')
 @section('title', 'Users')
-
+@section('sidebar')
+    @include('centaur.adminside')
+@endsection
 @section('content')
     <div class="page-header">
         <div class='btn-toolbar pull-right'>

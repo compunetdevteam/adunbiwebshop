@@ -1,5 +1,11 @@
 @extends('Centaur::dashlayout')
+@section('userinfo')
+	@include('centaur.userdetails')
+@endsection
+@section('sidebar')
 
+	@include('centaur.adminside')
+@endsection
 @section('content')
 		<h1> Add New Product </h1>
 		{!!Form::open(array('url'=> 'products/save','method'=>'post', 'role'=>'form'))!!}

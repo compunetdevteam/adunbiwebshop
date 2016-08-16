@@ -41,8 +41,8 @@
 								<a href=""><i class="fa fa-fw fa-edit"></i></a>| <a href=""><i class="fa fa-fw fa-trash"></i></a>
 				</div>
 			  </div>
-			 
-			  
+
+
 			@endforeach
 			
 			</div>

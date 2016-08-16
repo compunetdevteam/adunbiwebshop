@@ -1,5 +1,7 @@
-@extends('Centaur::layout')
-
+@extends('Centaur::dashlayout')
+@section('sidebar')
+    @include('centaur.adminside')
+@endsection
 @section('title', 'Create New Role')
 
 @section('content')

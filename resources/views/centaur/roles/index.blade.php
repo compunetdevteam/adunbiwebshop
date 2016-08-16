@@ -1,8 +1,11 @@
-@extends('Centaur::layout')
-
+@extends('Centaur::dashlayout')
+@section('sidebar')
+    @include('centaur.adminside')
+@endsection
 @section('title', 'Roles')
-
 @section('content')
+
+
     <div class="page-header">
         <div class='btn-toolbar pull-right'>
             <a class="btn btn-primary btn-lg" href="{{ route('roles.create') }}">
@@ -47,4 +50,4 @@
             </div>
         </div>
     </div>
-@stop
+@endsection
