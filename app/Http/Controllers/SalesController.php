@@ -26,22 +26,19 @@ class SalesController extends Controller
     {
         $this->discount = $logic;
         $this->middleware('sentinel.auth');
-        $this->user = Sentinel::check();
     }
 
     public function index()
     {
-        $user = $this->user;
         $sales = Sale::orderby('created_at','asc')->paginate(15);
-        return view('sales.index', compact('sales','user'));
+        return view('sales.index', compact('sales'));
     }
 
     public function createSale()
     {
         $products = Product::pluck('productname','id');
         $users = User::lists('email','id');
-        $user = Sentinel::getUser();
-        return view('sales.makesale',compact('users','products','user'));
+        return view('sales.makesale',compact('users','products'));
     }
 
     /**
@@ -87,7 +84,8 @@ class SalesController extends Controller
         $getsale = DB::table('sales')->join('products','sales.id','=','products.sale_id')
             ->select('products.productname','customername',
                 'customeraddress','total','sales.id')->where('sales.id',$sale->id)->get();
-        return view('sales.details', compact('getsale'));
+
+        return view('sales.detail', compact('getsale'));
         //dd($getsale);
     }
 
@@ -124,7 +122,8 @@ class SalesController extends Controller
 
     public function showDiscount(Product $product)
     {
-        return view('sales/discountpage', compact('product'));
+        dd('this hits the show discount page');
+        return view('sales.setdiscount', compact('product'));
     }
     
     public function AddDiscount($discountvalue, Product $product)
@@ -166,7 +165,6 @@ class SalesController extends Controller
 
     public function DeleteASale($id)
     {
-        //$sle = Sale::where('id',$id)->get();
         Sale::destroy($id);
     }
 }

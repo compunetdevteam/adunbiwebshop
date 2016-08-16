@@ -58,6 +58,9 @@ Route::get('sales', 'SalesController@index');
 Route::get('sales/create', 'SalesController@createSale');
 Route::post('sales/makesale', 'SalesController@makeSale');
 Route::get('sales/{sale}', 'SalesController@details');
+Route::get('sales/setdiscount','SalesController@showDiscount');
+
+
 
 ///////////////Stock Routes/////////////////
 Route::get('stocks', 'StocksController@index');
