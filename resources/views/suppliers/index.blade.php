@@ -17,7 +17,7 @@
  Supplier Address: {{$supplier->supplieraddress}}
 <div>
  <a href="suppliers/{{ $supplier->id }}" class="btn btn-primary">Update </a>
-  <a href="suppliers/delete/{{$supplier->id}}" class="btn btn-primary">Delete</a>
+  <a  href="suppliers/delete/{{$supplier->id}}" class="btn btn-primary">Delete</a>
  </div>
 
 @endforeach

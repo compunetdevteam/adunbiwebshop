@@ -44,6 +44,7 @@ $factory->define(App\Product::class, function(Faker\Generator $faker){
 
 $factory->define(App\Stock::class, function(Faker\Generator $faker){
     return [
+        'name' => $faker->words(7),
         'dateenteredinstock' => $faker->date('d-m-Y'),
         'numberofproductsinstock'=> $faker->numberBetween(5,3000)
     ];

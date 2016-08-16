@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App;
+use App\Stock;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -23,7 +24,7 @@ class StocksController extends Controller
     	return view('stocks.index', compact('results'));
     }
 
-    public function details(App\Stock $stock)
+    public function details(Stock $stock)
     {
         return view('stocks.showstock', compact('stock'));
     }
@@ -32,6 +33,7 @@ class StocksController extends Controller
     //DataAccess Methods for Stocks Controller
     public function ShowAllStockItems()
     {
-        return App\Stock::with('categories.products')->paginate(10);
+        //return App\Stock::with('categories.products')->paginate(10);
+        //$result = Stock::
     }
 }
