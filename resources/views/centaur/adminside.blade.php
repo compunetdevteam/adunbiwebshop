@@ -9,6 +9,7 @@
              "><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
         </li>
 
+
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-user"></i> Staff <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo3" class="collapse">
@@ -66,7 +67,7 @@
                     <a href="{{url('stocks')}}">View Stocks</a>
                 </li>
                 <li>
-                    <a href="{{url('stocks/newarrivals')}}">New Arrivals</a>
+                    <a href="{{url('stocks/newarrival')}}">New Arrivals</a>
                 </li>
 
             </ul>
