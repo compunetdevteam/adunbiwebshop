@@ -2,16 +2,27 @@
 
 namespace App\Http\Controllers;
 use App;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
 class StocksController extends Controller
 {
+    private $user;
+    public function __construct()
+    {
+        $this->middleware('sentinel.auth');
+        $this->user = Sentinel::check();
+    }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
     	$results = $this->ShowAllStockItems();
-        return view('stocks.index', compact('results'));
+        $user = $this->user;
+    	return view('stocks.index', compact('results','user'));
     }
 
     public function details(App\Stock $stock)

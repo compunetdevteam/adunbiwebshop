@@ -1,4 +1,7 @@
 @extends('Centaur::dashlayout')
+@section('userinfo')
+    @include('centaur.userdetails',$user)
+@endsection
 @section('sidebar')
     @include('centaur.adminside')
 @endsection
@@ -27,7 +30,6 @@
             {!! Form::select('Users',$users,'', ['class'=>'form-control']) !!}
             </div>
         </form>
-        {{$loggedinuser}}
     </div>
 
 @endsection

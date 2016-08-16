@@ -1,22 +1,54 @@
-@extends('Centaur::layout')
+@extends('Centaur::dashlayout')
+@section('userinfo')
+	@include('centaur.userdetails')
+@endsection
 @section('sidebar')
 	@include('centaur.adminside')
 @endsection
 @section('content')
-<h1> this is the product list</h1>
+	<div class="panel1">
+		<h3>  Products List  </h3>
 		<a href="{{action('ProductsController@indexup')}}" class="btn btn-primary">Show Updated Products</a>
-	
-			<table border="1" width="20%">
 			@foreach($products as $product)
 			
-				<tr>
-				<td>{{$product->productname}} : <a href="products/details/{{$product->id}}">details</a></td> 
-				<td>{{$product->sellingprice}}</td>
-					
-				</tr>
-				
+			<div class="table">
+			
+			
+			  <div class="tr">
+				<div class="th"><b>Stock ID</b></div>
+				<div class="th"><b>ProductName</b></div>
+				<div class="th"><b>Date of Puchase</b></div>
+				<div class="th"><b>Batch No</b></div>
+				<div class="th"><b>Serial No</b></div>
+				<div class="th"><b>Cost Price</b></div>
+				<div class="th"><b>Selling Price</b></div>
+				<div class="th"><b>Weight</b></div>
+				<div class="th"><b>Action</b></div>
+		    
+			  </div>
+			  @foreach($products as $product)
+			  <div class="tr1">
+				<div class="td1">{{$product->id}}</div>
+				<div class="td">{{ $product->productname}}</div>
+
+				<div class="td">{{ $product->dateofpurchase }}</div>
+				<div class="td">{{ $product->batchnumber }}</div>
+				<div class="td">{{ $product->serialnumber}}</div>
+				<div class="td">{{ $product->sellingprice }}</div>
+				<div class="td">Row 2, Cell 3</div>
+				<div class="td">Row  2, Cell 2</div>
+				<div class="td"><a href="products/details/{{$product->id}}"><i class="fa fa-fw fa-eye"></i></a>| 
+								<a href=""><i class="fa fa-fw fa-edit"></i></a>| <a href=""><i class="fa fa-fw fa-trash"></i></a>
+				</div>
+			  </div>
+			 
+			  
 			@endforeach
-			</table>
-</center>
+			
+			</div>
+
 			{{$products->links()}}
+
+</div>
+
 @endsection()

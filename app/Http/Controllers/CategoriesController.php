@@ -95,8 +95,7 @@ class CategoriesController extends Controller
 	public function update(Request $request)
 	{
         $update = Category::where('id','=',$request->input('id'))->update(['name'=> $request->input('name'),
-			'description'=>$request->input('description')
-		]);
+			'description'=>$request->input('description')]);
 		Session::flash('message','Updating the record was successful');
 		return redirect()->action('CategoriesController@index');
 	}
