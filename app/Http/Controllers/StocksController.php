@@ -11,8 +11,7 @@ class StocksController extends Controller
     public function index()
     {
     	$results = $this->ShowAllStockItems();
-
-    	return view('stocks.index', compact('results'));
+        return view('stocks.index', compact('results'));
     }
 
     public function details(App\Stock $stock)
