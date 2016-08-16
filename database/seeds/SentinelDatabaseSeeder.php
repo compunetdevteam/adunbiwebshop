@@ -43,15 +43,41 @@ class SentinelDatabaseSeeder extends Seeder
                 'roles.create' => true,
                 'roles.update' => true,
                 'roles.view' => true,
-                'roles.delete' => true
+                'roles.delete' => true,
+                'products.update' => true,
+                'products.view' => true,
+                'products.create' => true,
+                'products.delete' => true,
+                'sales.create' => true,
+                'sales.view' => true,
+                'sales.update' => true,
+                'sales.delete' => true,
+                'stocks.view' => true,
+                'stocks.create' => true,
+                'stocks.update' => true,
+                'stocks.delete' => true,
+                'suppliers.view' => true,
+                'suppliers.create' => true,
+                'suppliers.update' => true,
+                'suppliers.delete' => true,
+                'categories.view' => true,
+                'categories.create' => true,
+                'categories.update' => true,
+                'categories.delete' => true
             )
         ));
         $moderatorRole = Sentinel::getRoleRepository()->create(array(
-            'name' => 'Moderator',
-            'slug' => 'moderator',
+            'name' => 'Staff',
+            'slug' => 'staff',
             'permissions' => array(
-                'users.update' => true,
-                'users.view' => true,
+                'products.update' => true,
+                'products.view' => true,
+                'products.create' => true,
+                'sales.create' => true,
+                'sales.view' => true,
+                'stocks.view' => true,
+                'suppliers.view' => true,
+                'categories.view' => true
             )
         ));
         $subscriberRole = Sentinel::getRoleRepository()->create(array(

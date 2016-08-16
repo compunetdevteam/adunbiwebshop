@@ -1,24 +1,22 @@
 <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav side-nav">
         <li class="active">
-            <a href="admin.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-        </li>
-
-        <li>
-            <a href="settings.php"><i class="fa fa-fw fa-wrench"></i> Settings</a>
+            <a href="@if(Sentinel::getRoleRepository()->findByName('administrator'))
+                        {{url('admin')}}
+                    @else
+                        {{url('staff')}}
+                    @endif
+             "><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
         </li>
 
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-user"></i> Staff <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo3" class="collapse">
                 <li>
-                    <a href="{{url('register')}}">Create Staff</a>
+                    <a href="{{url('users')}}">Manage Staff</a>
                 </li>
                 <li>
-                    <a href="{{url('users')}}">View Staff</a>
-                </li>
-                <li>
-                    <a href="{{url('roles')}}">Assign Staff Role</a>
+                    <a href="{{url('roles')}}">Manage Staff Role</a>
                 </li>
             </ul>
 
@@ -59,17 +57,16 @@
                 <li>
                     <a href="{{url('sales/setdiscount')}}">Set Discount</a>
                 </li>
-
             </ul>
         </li>
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#demo7"><i class="fa fa-fw fa-briefcase"></i> Stocks<i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo7" class="collapse">
                 <li>
-                    <a href="{{url('stock/viewstock')}}">View Stocks</a>
+                    <a href="{{url('stocks')}}">View Stocks</a>
                 </li>
                 <li>
-                    <a href="{{url('stock/newarrivals')}}">New Arrivals</a>
+                    <a href="{{url('stocks/newarrivals')}}">New Arrivals</a>
                 </li>
 
             </ul>

@@ -1,7 +1,11 @@
 @extends('Centaur::dashlayout')
 @section('title', 'Users')
 @section('sidebar')
-    @include('centaur.adminside')
+    @if(!Sentinel::getRoleRepository()->findBySlug('administrator'))
+        @include('centaur.userside')
+    @else
+        @include('centaur.adminside')
+    @endif
 @endsection
 @section('content')
     <div class="page-header">

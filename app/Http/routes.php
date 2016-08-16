@@ -65,7 +65,7 @@ Route::get('sales/setdiscount','SalesController@showDiscount');
 ///////////////Stock Routes/////////////////
 Route::get('stocks', 'StocksController@index');
 Route::get('stocks/{stock}', 'StocksController@details');
-Route::get('getstocks', 'StocksController@displaystock');
+Route::get('stocks/newarrivals', 'StocksController@displaystock');
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 

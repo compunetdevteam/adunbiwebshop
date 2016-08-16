@@ -12,7 +12,6 @@ class StocksController extends Controller
     public function __construct()
     {
         $this->middleware('sentinel.auth');
-        $this->user = Sentinel::check();
     }
 
     /**
@@ -21,8 +20,7 @@ class StocksController extends Controller
     public function index()
     {
     	$results = $this->ShowAllStockItems();
-        $user = $this->user;
-    	return view('stocks.index', compact('results','user'));
+    	return view('stocks.index', compact('results'));
     }
 
     public function details(App\Stock $stock)
