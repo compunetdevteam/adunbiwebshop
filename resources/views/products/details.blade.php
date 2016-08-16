@@ -12,7 +12,7 @@
             <li><b>Serial Number :</b>{{ $product->serialnumber}}</li>
             <li><b>Price :</b>{{ $product->sellingprice }}</li>
             <li><b>Description of Product :</b>{{ $product->description }}</li>
-            <li>Click <a href="{{url('products/showupdatepage/'.$product->id)}}">here</a> to Edit</li>
+            <li>Click <a href="{{url('products/showupdatepage/'.$product->id)}}">here</a> to Edit </li>
             
         @endforeach
     </ul>

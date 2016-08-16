@@ -1,5 +1,11 @@
 @extends('Centaur::dashlayout')
-
+@section('sidebar')
+    @if(!Sentinel::getRoleRepository()->findBySlug('administrator'))
+        @include('centaur.userside')
+    @else
+        @include('centaur.adminside')
+    @endif
+@endsection
 @section('content')
 <h2>Update Products</h2>
 <hr/>

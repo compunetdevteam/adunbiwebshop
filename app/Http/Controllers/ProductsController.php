@@ -16,14 +16,12 @@ class ProductsController extends Controller
     public function __construct()
     {
         $this->middleware('sentinel.auth');
-        $this->user = Sentinel::check();
     }
 
     public function index()
 	{
 		$products = $this->ListProducts();
-        $user = $this->user;
-		return view('products.index',compact('products','user'));
+		return view('products.index',compact('products'));
 	}
 
     public function indexup()
@@ -35,7 +33,6 @@ class ProductsController extends Controller
     public function details($id)
     {
         $products = Product::where('id',$id)->get();
-        //dd($product);
         return view('products.details',compact('products'));
 	}
 
@@ -130,9 +127,10 @@ class ProductsController extends Controller
 	 * @param  Product $product [description]
 	 * @return [type]           [description]
 	 */
-	public function delete(Product $product)
+	public function delete($id)
 	{
-		return view('Product.delete', compact('product'));
+        $product = Product::where('id','=',$id)->get();
+		return view('products.delete', compact('product'));
 	}
 
 	public function confirmDelete($id)
@@ -207,12 +205,4 @@ class ProductsController extends Controller
         $product->save();
         return $product;
     }
-
-	/**
-	public function GetProductsByName($name)
-	{
-		$resultarray = DB::table('products')->select('productname', 'sellingprice', 'serialnumber', 'batchnumber')->where('productname','=',$name)->get();
-		$result = new Eloquent\Collection($resultarray);
-		return $result;
-	}**/
 } 

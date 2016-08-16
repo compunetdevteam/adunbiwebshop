@@ -32,6 +32,7 @@ Route::get('products/showupdatepage/{id}','ProductsController@showupdatepage');
 Route::get('products/searchform','ProductsController@searchform');
 Route::post('products/Updateproduct','ProductsController@updateproduct');
 Route::get('products/updated','ProductsController@indexup');
+Route::get('products/delete/{id}','ProductsController@delete');
 
 //find products by category
 Route::get('findCat', 'CategoriesController@findCategoryByName');
