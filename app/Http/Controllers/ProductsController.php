@@ -187,10 +187,15 @@ class ProductsController extends Controller
             'weight' => $request->input('weight')
         );
      
-      $updateproduct = Product::
-      where('id','=',$request->input('id'))->update($newproduct);
-     return redirect()->action('ProductsController@index');
-
+        $result = Product::where('id','=',$request->input('id'))->update($newproduct);
+        if(!$result)
+        {
+            $request->session()->flash('status','Your Update was unsuccessful!');
+            redirect()->back();
+        }else{
+            $request->session()->flash('status','Update successful!');
+        }
+        return redirect()->action('ProductsController@indexup');
     }
 
     public function SaveProducts(Request $request)

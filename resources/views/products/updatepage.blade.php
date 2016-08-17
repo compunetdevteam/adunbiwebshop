@@ -66,9 +66,9 @@
                 </div>
                  @endforeach
 
-{!!Form::submit('Save changes', array('class'=>'btn-primary'))  !!}
-
-
-    
+                {!!Form::submit('Save changes', array('class'=>'btn-primary'))  !!}
 {!! Form::close() !!}
+    @if(Session::has('status'))
+        <p class="alert-warning">{{Session::get('status')}}</p>
+    @endif
 @endsection

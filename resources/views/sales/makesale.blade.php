@@ -1,15 +1,17 @@
 @extends('Centaur::dashlayout')
-@section('userinfo')
-    @include('centaur.userdetails',$user)
-@endsection
 @section('sidebar')
-    @include('centaur.adminside')
+    @if(!Sentinel::getRoleRepository()->findBySlug('administrator'))
+        @include('centaur.userside')
+    @else
+        @include('centaur.adminside')
+    @endif
 @endsection
 @section('content')
 
-    <div class="col-md-pull-9">
-
-        <form action="{{url('sale/make')}}" method="post" role="form" class="form-horizontal" id="saleform">
+    <div class="row">
+        <h1 class="text-center">Make A Sale</h1>
+        <hr>
+        <form action="{{url('sale/make')}}" method="post" class="form-horizontal" id="saleform">
             <div class="form-group"><b>Customer Name :</b>
             <input type="text" placeholder="CustomerName" class="form-control">
             </div>

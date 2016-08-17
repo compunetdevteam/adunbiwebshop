@@ -1,10 +1,10 @@
 @extends('Centaur::dashlayout')
-@section('userinfo')
-	@include('centaur.userdetails')
-@endsection
 @section('sidebar')
-
-	@include('centaur.adminside')
+	@if(!Sentinel::getRoleRepository()->findBySlug('administrator'))
+		@include('centaur.userside')
+	@else
+		@include('centaur.adminside')
+	@endif
 @endsection
 @section('content')
 		<h1> Add New Product </h1>
@@ -14,15 +14,15 @@
 			{!!Form::text('productname',null, array('class' => 'form-control'))!!}
 			</div>
 			<div class="form-group">
-			{!!Form::label('Date of purchase')!!}
-			{!!Form::text('dateofpurchase',null,array('class' => 'form-control'))!!}
+			{!!Form::label('dateofpurchase','Date of purchase',['class'=>'label-control col-xs-3'])!!}
+			<div class="col-xs-3">{!!Form::date('dateofpurchase',null,array('class' => 'form-control'))!!}</div>
 			</div>
 			<div class="form-group">
-			{!!Form::label('Batch number')!!}
-			{!!Form::text('batchnumber',null,array('class' => 'form-control'))!!}
+			{!!Form::label('batchnumber','Batch number',['class'=>'label-control col-xs-3'])!!}
+			<div class="col-xs-3">{!!Form::text('batchnumber',null,array('class' => 'form-control'))!!}</div>
 			</div>
 			<div class="form-group">
-			{!!Form::label('Serial number')!!}
+			{!!Form::label('serialnumber','Serial number',['class'=>'label-control col-xs-3'])!!}
 			{!!Form::text('serialnumber',null,array('class' => 'form-control'))!!}
 			</div>
 			<div class="form-group">
@@ -38,18 +38,18 @@
 			{!!Form::text('description',null,array('class' => 'form-control'))!!}
 			</div>
 			<div class="form-group">
-			{!!Form::label('Weight')!!}
-			{!!Form::text('weight',null,array('class' => 'form-control'))!!}
+			{!!Form::label('weight','Weight',['class'=>'label-control col-xs-3'])!!}
+			<div class="col-xs-3">{!!Form::text('weight',null,array('class' => 'form-control'))!!}</div>
 			</div>
 			<div class="form-group">
-				{!!Form::label('Stock :')!!}
-				{!!Form::select('stock', $stocks, null,['class' => 'form-control'])!!}
+				{!!Form::label('stock','Stock :',['class'=>'label-control col-xs-3'])!!}
+				<div class="col-xs-5">{!!Form::select('stock', $stocks, null,['class' => 'form-control'])!!}</div>
 			</div>
 			<div class="form-group">
-			{!!Form::label('Supplier :')!!}
-			{!!Form::select('Supplier', $suppliers, null,['class' => 'form-control'])!!}
+			{!!Form::label('supplier','Supplier :',['class'=>'label-control col-xs-3'])!!}
+			<div class="col-xs-5">{!!Form::select('Supplier', $suppliers, null,['class' => 'form-control'])!!}</div>
 			</div>
-			{!!Form::submit('Submit')!!}
+			<div class="col-md-offset-6">{!!Form::submit('Submit')!!}</div>
 		{!!Form::close()!!}
 		<div>
 		@if(count($errors) > 0)
