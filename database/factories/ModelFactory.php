@@ -91,13 +91,13 @@ $factory->define(App\Category::class, function(Faker\Generator $faker){
     ];
 });
 
-$factory->define(App\Image::class, function(Faker\Generator $faker){
-    return [
-        'name' => $faker->name,
-        'imagepath' => $faker->sentence,
-        'product_id' => function(){
-            return factory(App\Product::class)->create()->id;
-        }
-    ];
-});
+//$factory->define(App\Image::class, function(Faker\Generator $faker){
+//    return [
+//        'name' => $faker->name,
+//        'imagepath' => $faker->sentence,
+//        'product_id' => function(){
+//            return factory(App\Product::class)->create()->id;
+//        }
+//    ];
+//});
 

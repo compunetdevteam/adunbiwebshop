@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-
+    use SoftDeletes;
 
     /**
      * Fields that are mass assignable
@@ -16,6 +17,7 @@ class Category extends Model
         'description',
     ];
 
+    protected $dates = ['deleted_at'];
 
     /**
      * Relationship with the Stocks table

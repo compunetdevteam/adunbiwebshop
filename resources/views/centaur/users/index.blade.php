@@ -1,7 +1,12 @@
-@extends('Centaur::layout')
-
+@extends('Centaur::dashlayout')
 @section('title', 'Users')
-
+@section('sidebar')
+    @if(!Sentinel::getRoleRepository()->findBySlug('administrator'))
+        @include('centaur.userside')
+    @else
+        @include('centaur.adminside')
+    @endif
+@endsection
 @section('content')
     <div class="page-header">
         <div class='btn-toolbar pull-right'>

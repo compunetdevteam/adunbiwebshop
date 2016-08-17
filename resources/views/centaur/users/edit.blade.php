@@ -1,7 +1,8 @@
-@extends('Centaur::layout')
-
+@extends('Centaur::dashlayout')
 @section('title', 'Edit User')
-
+@section('sidebar')
+    @include('centaur.adminside')
+@endsection
 @section('content')
 <div class="row">
     <div class="col-md-4 col-md-offset-4">

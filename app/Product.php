@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use SoftDeletes;
     /**
      * Whitelisted attributes that can be mass assigned
      * @var array
@@ -18,11 +20,13 @@ class Product extends Model
         'costprice',
         'sellingprice',
         'description',
-        'weight',
-        'stock_id',
-        'supplier_id',
-        'sale_id'
+        'weight'
     ];
+
+    /**
+     * SoftDelete feature
+     */
+    protected $dates = ['deleted_at'];
 
 
     /**
@@ -48,17 +52,17 @@ class Product extends Model
     /**
      * Many products can be in one sale
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+     
     public function sale()
     {
         return $this->belongsTo(Sale::class);
-    }
+    }*/
 
     /**
      * Many products can be supplied by a supplier
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function suppliers()
+    public function supplier()
     {
         return $this->belongsTo(Supplier::class);
     }

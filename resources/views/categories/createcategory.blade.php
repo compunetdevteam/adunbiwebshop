@@ -1,21 +1,29 @@
-@extends('centaur.layout')
-
+@extends('Centaur::dashlayout')
+@section('sidebar')
+    @if(!Sentinel::getRoleRepository()->findBySlug('administrator'))
+        @include('centaur.userside')
+    @else
+        @include('centaur.adminside')
+    @endif
+@endsection
 @section('content')
+
 <h1>Add New Categories</h1>
-<div class="form-group">
-{!!Form::open(array('url'=>'categories/save','method'=>'POST'))!!}
-</div>
-<div class="form-group">
-	{!!Form::label('Enter Category Name :')!!}
-		{!!Form::text('name')!!} 
-	</div>
-		<div class="form-group">
-		{!!Form::textarea('description')!!}
-		</div>
-		<div class="form-group">
-		{!!Form::submit('Save Category')!!}
-		</div>
-		<div class="form-group">
-{!!Form::close()!!}
-</div>
+<hr />
+
+<form action="{{url('categories/save')}}" method="post" class="form-horizontal" role="form" >
+    <div class="form-group"><b>Category Name :</b>
+    <input type="text" placeholder="Name of Category" name="name" class="form-control">
+    </div>
+    <div class="form-group"><b>Description :</b>
+        <input type="text" class="form-control" placeholder="Type a brief Description of the Category">
+    </div>
+
+    <div class="form-group"><input type="submit" class="btn btn-primary"></div>
+</form>
+<p>
+    @foreach($errors->all() as $error)
+        {{$error }}
+    @endforeach
+</p>
 @endsection

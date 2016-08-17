@@ -239,4 +239,93 @@ ul.alert-dropdown {
 
 .panel-yellow > a:hover {
     color: #df8a13;
+
 }
+
+
+
+	
+.panel1{
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 3px 3px 3px 3px #eeeeee;
+	border:  0.5px #F0F0E1;
+
+	
+}
+.panel-purple{
+	background:#5C26FF;
+	background: -webkit-linear-gradient(left, #5900B2 , #5C26FF ); 
+    background: -o-linear-gradient(right, #5C26FF, #5900B2); 
+	padding-bottom: 5px;
+	padding-top:5px;
+	padding-left: 10px;
+	color: #fff;
+	box-shadow: 3px 3px 3px #DFBFFF ;
+}
+
+
+.panel-purple1 {
+	border: solid 1px #ccc;
+	border-radius: 4px 4px 4px 4px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	color: #5C26FF;
+	
+}
+
+.panel-purple2{
+	
+	color: #000;
+	background: #fff;
+	background: -webkit-linear-gradient(left, #fff, #eee); 
+    background: -o-linear-gradient(right, #fff, #eee); 
+    background: -moz-linear-gradient(right, #fff, #eee); 
+    background: linear-gradient(to right, #fff , #eee); 
+	padding-left: 10px;
+}
+
+/* Custom Colored Div-tables */
+
+div.table {
+	border: 0.1px solid #ccc; 
+	display: table; 
+	box-shadow: 3px 3px 3px  #eee;
+	font-size: 13px;
+	border-top: 0px;
+	
+	}
+div.tr {
+	
+	display: table-row; 
+	
+	}	
+div.tr1 {
+	 
+	display: table-row;
+	}
+div.td {
+	border: 0.1px solid #ccc; 
+	display: table-cell;
+	background: #fff;
+	}
+div.td1 {
+	border: 0.1px solid #ccc; 
+	display: table-cell;
+	color: #ff0000;
+	background: #F0F4FF;
+	
+	}
+div.th {
+	border: 0.1px solid #ccc; 
+	border-bottom:0px;
+	display: table-cell; 
+	color: #fff; 
+	text-transform:inherit; 
+	background:#5900B2;
+	background: -webkit-linear-gradient(left, #5900B2 , #5900B2); 
+    background: -o-linear-gradient(right, #5900B2, #5900B2); 
+    background: -moz-linear-gradient(right, #5900B2, #5900B2); 
+    background: linear-gradient(to right, #5900B2, #5900B2);
+	;
+	}

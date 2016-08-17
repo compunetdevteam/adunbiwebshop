@@ -18,11 +18,22 @@ Route::get('/', function () {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////Routes for the AdminController////////////////////////////////////////////////////////////////
+Route::get('admin','AdminController@index');
 ////Routes for the Products Controller and Products Section of the application////////////////////
 Route::get('products','ProductsController@index');
 Route::get('products/search','ProductsController@search');
 Route::get('products/doSearch','ProductsController@doSearch');
-
+Route::get('products/details/{id}','ProductsController@details');
+Route::get('products/create','ProductsController@create');
+Route::post('products/save', 'ProductsController@newproductform');
+Route::get('products/edit/{id}','ProductsController@edit');
+Route::get('products/showupdatepage/{id}','ProductsController@showupdatepage');
+Route::get('products/searchform','ProductsController@searchform');
+Route::post('products/Updateproduct','ProductsController@updateproduct');
+Route::get('products/updated','ProductsController@indexup');
+Route::get('products/delete/{id}','ProductsController@delete');
+Route::post('products/doDelete', 'ProductsController@doDelete');
 //find products by category
 Route::get('findCat', 'CategoriesController@findCategoryByName');
 Route::get('createCatByName','CategoriesController@createProductCategory');
@@ -31,25 +42,49 @@ Route::post('productbycategoryResult','CategoriesController@viewProductByCategor
 Route::get('createcategory','CategoriesController@createcategory');
 /////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('categories', 'CategoriesController@index');
+Route::get('categories/createpage','CategoriesController@create');
+Route::post('categories/save','CategoriesController@save');
 Route::get('categories/search','CategoriesController@search');
-Route::get('categories/doSearch', 'CategoriesController@doSearch');
-Route::get('Categories','CategoriesController@searchProductByCategory');
-Route::post('Categories','CategoriesController@viewProductByCategory');
-Route::get('Categories','CategoriesController@createcategory');
+Route::post('categories/doSearch', 'CategoriesController@doSearch');
+Route::get('categories/delete/{id}','CategoriesController@delete');
+Route::get('categories/{id}','CategoriesController@updatepage');
+Route::get('categories/save/{id}','CategoriesController@save');
+Route::post('categories/update  ','CategoriesController@update');
+
+
+
 
 ///Routes for SalesController and Sales Section of the Application////////////////////////////
+Route::get('sales/setdiscount','SalesController@showDiscount');
 Route::get('sales', 'SalesController@index');
+Route::get('sales/create', 'SalesController@createSale');
+Route::post('sales/makesale', 'SalesController@makeSale');
+Route::get('sales/{sale}', 'SalesController@details');
+
+
+
 
 ///////////////Stock Routes/////////////////
 Route::get('stocks', 'StocksController@index');
 Route::get('stocks/{stock}', 'StocksController@details');
-Route::get('getstocks', 'StocksController@displaystock');
-///////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('stocks/newarrivals', 'StocksController@displaystock');
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// Authorization
+///////////////////////Supplier Route//////////////////////////////
+Route::get('suppliers','SuppliersController@index');
+Route::get('suppliers/create','SuppliersController@displayCreatePage');
+Route::post('suppliers/saveSupplier','SuppliersController@saveSupplier');
+
+Route::get('suppliers/{supplier}', 'SuppliersController@showupdatepage');
+Route::post('suppliers/UpdateSupplier', 'SuppliersController@UpdateSupplier');
+Route::get('suppliers/delete/{id}', 'SuppliersController@delete');
+///////////////////////////////////////////////////////////
+
+
+// Authorizations
 Route::get('/login', ['as' => 'auth.login.form', 'uses' => 'Auth\SessionController@getLogin']);
-Route::post('/login', ['as' => 'auth.login.attempt', 'uses' => 'Auth\SessionController@postLogin']);
+Route::post('/dologin', ['as' => 'auth.login.attempt', 'uses' => 'Auth\SessionController@postLogin']);
 Route::get('/logout', ['as' => 'auth.logout', 'uses' => 'Auth\SessionController@getLogout']);
 
 // Registration
@@ -75,32 +110,7 @@ Route::resource('roles', 'RoleController');
 
 // Dashboard
 //Route::get('dashboard', ['as' => 'dashboard', 'uses' => function() {
-Route::get('/', ['as' => 'dashboard', 'uses' => function() {
-    //return view('centaur.dashboard');
-    return view('centaur.admindash');
-}]);
-
-
-//Admin Interface
-Route::get('admindashboard', function () {
-    return view('adminUI.adminDashboard');
-});
-
-Route::get('viewstaff', function () {
-    return view('adminUI.viewstaff');
-});
-
-Route::get('createstaff', function () {
-    return view('adminUI.createstaff');
-});
-
-Route::get('viewcustomer', function () {
-    return view('adminUI.viewcustomer');
-});
-
-Route::get('createpro', function () {
-    return view('adminUI.createpro');
-});
+Route::get('/', ['as' => 'dashboard', 'uses' => 'AdminController@index']);
 
 
 

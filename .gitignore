@@ -37,3 +37,5 @@ bootstrap/cache/
 .phpintel/214b91b4a9af1e7683a3d8525a1bb46e
 .phpintel/76871e28dc3769662d343e4047068bb3
 .phpintel/76e2f67b58c67d69e1af5023a43dbd54
+*.php___jb_tmp___
+*.xml___jb_tmp___

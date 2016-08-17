@@ -1,14 +1,31 @@
-@extends('Centaur::layout')
-
+@extends('Centaur::dashlayout')
+@section('sidebar')
+    @if(!Sentinel::getRoleRepository()->findBySlug('administrator'))
+        @include('centaur.userside')
+    @else
+        @include('centaur.adminside')
+    @endif
+@endsection
 @section('content')
-<h1>List of all Categories</h1>
-	<table border="2">
-	
-	@foreach($category as $cat)
-		<th><b>Category Name:</b> {{$cat['name']}} </th> 
-		<tr> <td><b>Categories Description:</b> {{$cat['description']}}</td></tr>
-	@endforeach
-	</ul>
-	</table>
-	
+
+    <h1>List of all Categories</h1>
+
+    {{--this is a session message--}}
+    @if(Session::has('message'))
+        <p class="alert-success">{{Session::get('message')}}</p>
+    @endif
+    {{--end of session message--}}
+
+        @foreach($category as $cat)
+           <b>Category Name:</b> {{$cat->name}}<br/>
+            <b>Categories Description:</b> {{$cat->description}}<br/>
+           <div>
+           <a href="categories/{{$cat->id}}" class="btn btn-primary">Update</a>
+           <a href="categories/delete/{{$cat->id}}" class="btn btn-primary">Delete</a>
+               </div>
+                   <hr/>
+            @endforeach
+            </ul>
+
+
 @endsection

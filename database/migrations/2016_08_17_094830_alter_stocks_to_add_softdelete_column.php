@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterCategoriesTable extends Migration
+class AlterStocksToAddSoftdeleteColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,8 @@ class AlterCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropForeign('categories_stock_id_foreign');
-            $table->dropColumn('stock_id');
+        Schema::table('stocks', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -25,8 +24,8 @@ class AlterCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            //
+        Schema::table('stocks', function (Blueprint $table) {
+            $table->dropSoftDeletes();
         });
     }
 }

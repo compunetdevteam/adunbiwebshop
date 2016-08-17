@@ -13,7 +13,7 @@ class AddForeignkeyToCategoriesTable extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->foreign('stock_id')->references('id')->on('stocks');
+//            $table->foreign('stock_id')->references('id')->on('stocks');
         });
     }
 
