@@ -1,5 +1,11 @@
-
 @extends('Centaur::dashlayout')
+@section('sidebar')
+    @if(!Sentinel::getRoleRepository()->findBySlug('administrator'))
+        @include('centaur.userside')
+    @else
+        @include('centaur.adminside')
+    @endif
+@endsection
 @section('content')
 
 <div class="col-md-7">
@@ -12,7 +18,7 @@
             <li><b>Serial Number :</b>{{ $product->serialnumber}}</li>
             <li><b>Price :</b>{{ $product->sellingprice }}</li>
             <li><b>Description of Product :</b>{{ $product->description }}</li>
-            <li>Click <a href="{{url('products/showupdatepage/'.$product->id)}}">here</a> to Edit </li>
+            <p><li>Click <a href="{{url('products/showupdatepage/'.$product->id)}}">here</a> to Edit or <a href="{{url()->previous()}}">back</a> to return to the last Page.</li></p>
             
         @endforeach
     </ul>

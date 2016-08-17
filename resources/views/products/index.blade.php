@@ -36,7 +36,7 @@
 				<div class="td">Row 2, Cell 3</div>
 				<div class="td">Row  2, Cell 2</div>
 				<div class="td"><a href="{{url('products/details/'.$product->id)}}"><i class="fa fa-fw fa-eye"></i></a>|
-								<a href=""><i class="fa fa-fw fa-edit"></i></a>| <a href="{{url('products/delete/'.$product->id)}}"><i class="fa fa-fw fa-trash"></i></a>
+				<a href="{{url('products/edit/'.$product->id)}}"><i class="fa fa-fw fa-edit"></i></a>| <a href="{{url('products/delete/'.$product->id)}}"><i class="fa fa-fw fa-trash"></i></a>
 				</div>
 			  </div>
 
@@ -44,6 +44,11 @@
 			@endforeach
 			
 			</div>
+		<p>
+		@if(Session::has('status'))
+			<p class="alert-warning -warning">{{Session::get('status',5)}}</p>
+			@endif
+			</p>
 
 			{{$products->links()}}
 

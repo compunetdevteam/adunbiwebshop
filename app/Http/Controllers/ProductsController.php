@@ -36,6 +36,11 @@ class ProductsController extends Controller
         return view('products.details',compact('products'));
 	}
 
+    public function edit($id)
+    {
+        $products = Product::where('id','=',$id)->get();
+        return view('products.updatepage', compact('products'));
+    }
     /**
      * [createproduct description]
      * @return \Illuminate\Http\RedirectResponse
@@ -46,8 +51,7 @@ class ProductsController extends Controller
             ->select('categories.name','stock_id')->pluck('name','stock_id');
         $stocks = new Collection($result);
         $suppliers = Supplier::lists('suppliername','id');
-        $user = $this->user;
-        return view ('products.newproductform', compact('suppliers','stocks','user'));
+        return view ('products.newproductform', compact('suppliers','stocks'));
     }
 
     public function newproductform(Request $request)
@@ -69,11 +73,6 @@ class ProductsController extends Controller
         {
             return redirect()->action('ProductsController@index');
         }
-    }
-
-    public function edit(Product $product)
-    {
-        return view('products.edit', compact('product'));
     }
 
     /**
@@ -98,28 +97,20 @@ class ProductsController extends Controller
 		return view('products.productresult', compact('results'));
 	}
 
-	/**
-     * Load and find the products supplied by a supplier's name
-     * @param string $name
-     * @return Collection Products
-     */
-    public function productsearch(Request $request)
-    {
-    	$results = Product::where('productname','like',$request->input('name').'%')->get();
-    	return $results;//$name;
-    }
+
     /**
      * [search product by dateofpurchase ]
      * @param  Request begin and end date
      * @return [product purchase within the specified dates]
      */
-    public function searchform(Request $request)
+    public function searchform()
     {
         return view('products.searchform');
     }
     public function searchbydate($datebegin, $dateend)
     {
         $dateofpurchase = Product::wherebetween('dateofpurchase',['datebegin','dateend'])->get();
+
     }
 
 	/**
@@ -127,27 +118,37 @@ class ProductsController extends Controller
 	 * @param  Product $product [description]
 	 * @return [type]           [description]
 	 */
-	public function delete($id)
+	public function delete(Product $products,$id)
 	{
-        $product = Product::where('id','=',$id)->get();
+        $product = $products->find($id);
 		return view('products.delete', compact('product'));
 	}
 
-	public function confirmDelete($id)
+	public function doDelete(Request $request)
 	{
-		$results = $this->DeleteAProduct($id);
-		if($results === 0)
+        $r = Product::find($request->input('id'));
+        //dd($r);
+		$results = $this->deleteProduct($r->id);
+		if(!$results)
 		{
-			//throw an exception and handle
-			echo" No product to delete";
-		}
-		return redirect()->action('ProductsController', 'index');
+			$request->session()->flash('status','Product was not deleted, there was an error!');
+            redirect()->back();
+		}else{
+            $request->session()->flash('status','Product was deleted successfully!');
+        }
+		return redirect()->action('ProductsController@index');
 	}
 
 
 	/**
 	 * Data Access Methods
 	 */
+
+    public function deleteProduct($id)
+    {
+        $result = Product::find($id);
+        return $result->delete();
+    }
 	public function ListProducts()
 	{
 		return Product::orderby('created_at','desc')->paginate(15);
@@ -157,11 +158,15 @@ class ProductsController extends Controller
     {
         return Product::orderby('updated_at','desc')->paginate(15);
     }
-
-    public function showupdatepage($id )
+    /**
+     * Load and find the products supplied by a supplier's name
+     * @param string $name
+     * @return Collection Products
+     */
+    public function productsearch(Request $request)
     {
-       $result = Product::find($id);
-      return view('products.showupdatepage', compact('result'));
+        $results = Product::where('productname','like',$request->input('name').'%')->get();
+        return $results;
     }
 
     public function updateproduct(Request $request)

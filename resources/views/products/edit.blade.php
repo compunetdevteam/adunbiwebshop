@@ -1,6 +1,13 @@
 @extends('Centaur::dashlayout')
-
+@section('sidebar')
+    @if(!Sentinel::getRoleRepository()->findBySlug('administrator'))
+        @include('centaur.userside')
+    @else
+        @include('centaur.adminside')
+    @endif
+@endsection
 @section('content')
 
-this s edit page
+    h1.text-center{Update ProductPage
+
 @endsection

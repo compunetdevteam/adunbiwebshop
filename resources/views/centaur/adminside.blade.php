@@ -41,7 +41,7 @@
                 <li>
                     <a href="{{url('products')}}">View Products</a>
                 </li>
-                <li><a href="{{url('products/edit')}}">Update Product</a></li>
+                <li><a href="{{url('products/search')}}">Search Products</a></li>
             </ul>
 
         </li>

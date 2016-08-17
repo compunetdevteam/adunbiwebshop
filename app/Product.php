@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use SoftDeletes;
     /**
      * Whitelisted attributes that can be mass assigned
      * @var array
@@ -20,6 +22,11 @@ class Product extends Model
         'description',
         'weight'
     ];
+
+    /**
+     * SoftDelete feature
+     */
+    protected $dates = ['deleted_at'];
 
 
     /**

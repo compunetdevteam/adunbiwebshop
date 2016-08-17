@@ -44,7 +44,6 @@ $factory->define(App\Product::class, function(Faker\Generator $faker){
 
 $factory->define(App\Stock::class, function(Faker\Generator $faker){
     return [
-        'name' => $faker->words(7),
         'dateenteredinstock' => $faker->date('d-m-Y'),
         'numberofproductsinstock'=> $faker->numberBetween(5,3000)
     ];
@@ -92,13 +91,13 @@ $factory->define(App\Category::class, function(Faker\Generator $faker){
     ];
 });
 
-$factory->define(App\Image::class, function(Faker\Generator $faker){
-    return [
-        'name' => $faker->name,
-        'imagepath' => $faker->sentence,
-        'product_id' => function(){
-            return factory(App\Product::class)->create()->id;
-        }
-    ];
-});
+//$factory->define(App\Image::class, function(Faker\Generator $faker){
+//    return [
+//        'name' => $faker->name,
+//        'imagepath' => $faker->sentence,
+//        'product_id' => function(){
+//            return factory(App\Product::class)->create()->id;
+//        }
+//    ];
+//});
 

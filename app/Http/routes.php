@@ -27,13 +27,13 @@ Route::get('products/doSearch','ProductsController@doSearch');
 Route::get('products/details/{id}','ProductsController@details');
 Route::get('products/create','ProductsController@create');
 Route::post('products/save', 'ProductsController@newproductform');
-Route::get('products/edit','ProductsController@edit');
+Route::get('products/edit/{id}','ProductsController@edit');
 Route::get('products/showupdatepage/{id}','ProductsController@showupdatepage');
 Route::get('products/searchform','ProductsController@searchform');
 Route::post('products/Updateproduct','ProductsController@updateproduct');
 Route::get('products/updated','ProductsController@indexup');
 Route::get('products/delete/{id}','ProductsController@delete');
-
+Route::post('products/doDelete', 'ProductsController@doDelete');
 //find products by category
 Route::get('findCat', 'CategoriesController@findCategoryByName');
 Route::get('createCatByName','CategoriesController@createProductCategory');
